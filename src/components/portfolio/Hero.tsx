@@ -76,13 +76,13 @@ const Hero = () => {
           </a>
         </div>
 
-        <div className="flex justify-center space-x-8 animate-fade-in-up stagger-2">
+        <div className="flex flex-wrap justify-center gap-x-8 gap-y-6 animate-fade-in-up stagger-2">
           {[
             { href: "https://github.com/arvinder004", icon: Github, label: "GitHub" },
             { href: "https://www.linkedin.com/in/arvinder004/", icon: Linkedin, label: "LinkedIn" },
             { href: "https://x.com/arvinder004", icon: Twitter, label: "Twitter" },
-            { href: "https://www.youtube.com/@cyber_gabru", icon: Youtube, label: "YouTube" },        // Added YouTube
-          { href: "https://www.instagram.com/cyber_gabru", icon: Instagram, label: "Instagram" },
+            { href: "https://www.youtube.com/@cyber_gabru", icon: Youtube, label: "YouTube" },
+            { href: "https://www.instagram.com/cyber_gabru", icon: Instagram, label: "Instagram" },
             { href: "mailto:asdhoul004@gmail.com", icon: Mail, label: "Email" }
           ].map(({ href, icon: Icon, label }, index) => (
             <a 
