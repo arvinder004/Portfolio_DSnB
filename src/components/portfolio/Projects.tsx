@@ -65,7 +65,7 @@ const Projects = () => {
       title: "Text-to-Image Tool",
       description:
         "Synthesized images from textual prompts, integrating cutting-edge Hugging Face and Stable Diffusion models. Enabled generative AI powered image creation through text descriptions.",
-      icon: '<BarChart className="h-6 w-6" />',
+      icon: <BarChart className="h-6 w-6" />,
       technologies: [
         "Python",
         "Pandas",
@@ -89,7 +89,7 @@ const Projects = () => {
       title: "E-Commerce Sales Dashboard",
       description:
         "I developed an interactive Power BI dashboard for an e-commerce dataset, integrating sales transactions and customer demographics. The project involved data cleaning, creating visualizations like bar charts for revenue trends, heatmaps for product performance, and dynamic slicers. This enhanced my skills in data visualization, demonstrating how business intelligence tools can optimize retail strategies.",
-      icon: '<BarChart className="h-6 w-6" />',
+      icon: <BarChart className="h-6 w-6" />,
       technologies: ["PowerBI"],
       category: "Data Visualization",
       liveUrl:
@@ -105,7 +105,7 @@ const Projects = () => {
       title: "Student Performance Analytics Dashboard",
       description:
         "I built a Power BI dashboard analyzing student academic records, including grades, attendance, and extracurricular data. It featured KPI metrics for dropout risks, line graphs for performance trends, and demographic drill-downs. This project refined my ability to handle educational datasets, emphasizing predictive analytics for institutional decision-making.",
-      icon: '<BarChart className="h-6 w-6" />',
+      icon: <BarChart className="h-6 w-6" />,
       technologies: ["Power BI"],
       category: "Data Visualization",
       liveUrl:
@@ -121,7 +121,7 @@ const Projects = () => {
       title: "Multilingual Video Dubbing Tool",
       description:
         "Automated multilingual video dubbing, transcending language barriers and reducing translation time by 50% for 5+ Indian languages. Orchestrated real-time dubbing with over 95% accuracy by integrating Google Translate API and SpeechRecognition.",
-      icon: '<BarChart className="h-6 w-6" />',
+      icon: <BarChart className="h-6 w-6" />,
       technologies: ["Python", "Speech Recognition"],
       category: "NLP",
       githubUrl: "https://github.com/arvinder004/Video-Dubbing-Web-App",
@@ -231,7 +231,7 @@ const Projects = () => {
       title: "Arduino-Based Solar Tracking System",
       description:
         "Revolutionized energy efficiency with an Arduino UNO-based solar tracking system, leveraging LDR and IR sensors to boost energy collection by 35%. Achieved 100% automation in solar panel alignment using servo motors, eliminating manual adjustments for seamless operation.",
-      icon: '<BarChart className="h-6 w-6" />',
+      icon: <BarChart className="h-6 w-6" />,
       technologies: ["Arduino", "Sensors"],
       category: "IoT",
       liveUrl:
