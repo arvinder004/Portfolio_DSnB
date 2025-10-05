@@ -29,12 +29,6 @@ const Hero = () => {
       {/* Enhanced Content */}
       <div className="relative z-10 text-center px-4 sm:px-6 lg:px-8 max-w-4xl mx-auto">
         <div className="animate-fade-in-up">
-          {/* Sparkle icon */}
-          <div className="flex justify-center mb-6">
-            <div className="p-4 rounded-full bg-gradient-primary shadow-intense animate-pulse-slow">
-              <Sparkles className="h-8 w-8 text-white" />
-            </div>
-          </div>
           
           <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent text-glow">
             Arvinder Singh Dhoul
