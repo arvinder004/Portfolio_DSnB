@@ -81,7 +81,7 @@ const Navigation = () => {
               className="border-primary/50 hover:bg-primary/10"
               asChild
             >
-              <a href="public/ArvinderSinghDhoul_Resume.pdf" target="_blank" rel="noopener noreferrer">
+              <a href="src/assets/ArvinderSinghDhoul_Resume.pdf" target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-4 w-4" />
                 Resume
               </a>
