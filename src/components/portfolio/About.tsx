@@ -35,7 +35,7 @@ const About = () => {
           <div className="relative inline-block">
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
               Passionate about leveraging data and technology to solve complex problems. 
-              With 5+ years of experience in data science and backend development, 
+              With 3+ years of experience in data science and backend development, 
               I bring a unique blend of analytical thinking and technical expertise.
             </p>
             <div className="absolute -inset-2 bg-gradient-accent opacity-10 blur-xl rounded-lg"></div>

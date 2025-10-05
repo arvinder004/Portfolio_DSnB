@@ -64,17 +64,18 @@ const Hero = () => {
               <ArrowDown className="ml-2 h-4 w-4 group-hover:animate-bounce" />
             </span>
           </Button>
-          <Button 
-            variant="outline" 
-            size="lg"
-            className="border-primary/50 hover:bg-primary/10 hover:border-primary hover:shadow-glow transition-all duration-500 magnetic-element group"
-          >
-            <Mail className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
-            Get In Touch
-          </Button>
+          <a href="mailto:asdhoul004@gmail.com">
+            <Button 
+              variant="outline" 
+              size="lg"
+              className="border-primary/50 hover:bg-primary/10 hover:border-primary hover:shadow-glow transition-all duration-500 magnetic-element group"
+            >
+              <Mail className="mr-2 h-4 w-4 group-hover:rotate-12 transition-transform duration-300" />
+              Get In Touch
+            </Button>
+          </a>
         </div>
 
-        {/* Enhanced Social Links */}
         <div className="flex justify-center space-x-8 animate-fade-in-up stagger-2">
           {[
             { href: "https://github.com/arvinder004", icon: Github, label: "GitHub" },

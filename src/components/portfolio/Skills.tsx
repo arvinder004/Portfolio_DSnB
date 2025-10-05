@@ -63,17 +63,17 @@ const Skills = () => {
     {
       icon: <Code className="h-5 w-5" />,
       title: "Programming Languages",
-      items: ["Python", "JavaScript", "TypeScript", "SQL"]
+      items: ["Python", "JavaScript", "TypeScript", "C++", "SQL"]
     },
     {
       icon: <Layers className="h-5 w-5" />,
       title: "Frameworks & Libraries",
-      items: ["React", "Node.js", "Express", "FastAPI", "Django", "Flask", "Next.js"]
+      items: ["React.js", "Node.js", "Express", "FastAPI", "Django", "Flask", "Next.js"]
     },
     {
       icon: <Cpu className="h-5 w-5" />,
       title: "Machine Learning",
-      items: ["Supervised Learning", "Deep Learning", "NLP", "Computer Vision", "MLOps"]
+      items: ["Supervised Learning", "Unsupervised Learning", "Deep Learning", "NLP", "Computer Vision", "MLOps", "Transformers", "Generative AI"]
     },
     {
       icon: <Workflow className="h-5 w-5" />,
@@ -83,7 +83,7 @@ const Skills = () => {
     {
       icon: <BarChart3 className="h-5 w-5" />,
       title: "Analytics & BI",
-      items: ["Tableau", "Power BI", "Apache Spark", "Airflow", "Kafka", "Snowflake"]
+      items: ["Power BI", "Kafka", "Snowflake"]
     },
     {
       icon: <Shield className="h-5 w-5" />,
@@ -93,12 +93,11 @@ const Skills = () => {
   ];
 
   const technologies = [
-    "Python", "JavaScript", "TypeScript", "SQL", "R", "Java",
+    "Python", "JavaScript", "TypeScript", "SQL", "R", "C++",
     "React", "Node.js", "Express", "FastAPI", "Django", "Flask",
     "PostgreSQL", "MongoDB", "Redis", "Elasticsearch",
     "Docker", "Kubernetes", "AWS", "GCP", "Azure",
-    "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch",
-    "Apache Spark", "Airflow", "Kafka", "RabbitMQ",
+    "Pandas", "NumPy", "Scikit-learn", "TensorFlow", "PyTorch", "Kafka",
     "Git", "Jenkins", "GitHub Actions", "Terraform", "Ansible"
   ];
 
