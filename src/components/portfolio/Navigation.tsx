@@ -123,7 +123,7 @@ const Navigation = () => {
                   className="w-full border-primary/50 hover:bg-primary/10"
                   asChild
                 >
-                  <a href="public/ArvinderSinghDhoul_Resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="https://docs.google.com/document/d/1QzNsomWibLIyi9wDVpx37NRcBMdEFMxJBeWwdkNRHpU/edit?usp=sharing" target="_blank" rel="noopener noreferrer">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </a>
