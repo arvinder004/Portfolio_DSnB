@@ -32,9 +32,9 @@ const Index = () => {
           <Projects />
         </section>
         
-        <section id="experience">
+        {/* <section id="experience">
           <Experience />
-        </section>
+        </section> */}
         
         <section id="contact">
           <Contact />

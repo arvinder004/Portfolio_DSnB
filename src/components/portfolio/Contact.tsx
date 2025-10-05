@@ -22,19 +22,19 @@ const Contact = () => {
     {
       icon: <Mail className="h-5 w-5" />,
       label: "Email",
-      value: "alex.johnson@email.com",
-      link: "mailto:alex.johnson@email.com"
+      value: "asdhoul004@gmail.com",
+      link: "mailto:asdhoul004@gmail.com"
     },
     {
       icon: <Phone className="h-5 w-5" />,
       label: "Phone",
-      value: "+1 (555) 123-4567",
-      link: "tel:+15551234567"
+      value: "+91 8435967741",
+      link: "tel:+918435967741"
     },
     {
       icon: <MapPin className="h-5 w-5" />,
       label: "Location",
-      value: "San Francisco, CA",
+      value: "Jabalpur, India",
       link: null
     }
   ];
@@ -43,22 +43,22 @@ const Contact = () => {
     {
       icon: <Github className="h-5 w-5" />,
       label: "GitHub",
-      username: "@alexjohnson",
-      url: "https://github.com/alexjohnson",
+      username: "@arvinder004",
+      url: "https://github.com/arvinder004",
       description: "View my open source projects"
     },
     {
       icon: <Linkedin className="h-5 w-5" />,
       label: "LinkedIn",
-      username: "Alex Johnson",
-      url: "https://linkedin.com/in/alexjohnson",
+      username: "Arvinder Singh Dhoul",
+      url: "https://www.linkedin.com/in/arvinder004/",
       description: "Connect professionally"
     },
     {
       icon: <Twitter className="h-5 w-5" />,
       label: "Twitter",
-      username: "@alexjohnson_ds",
-      url: "https://twitter.com/alexjohnson_ds",
+      username: "@arvinder004",
+      url: "https://x.com/arvinder004",
       description: "Follow my thoughts on tech"
     }
   ];
@@ -221,14 +221,14 @@ const Contact = () => {
             </Card>
 
             {/* Quick Actions */}
-            <Card className="glass-card">
+            {/* <Card className="glass-card">
               <CardContent className="pt-6 space-y-3">
                 <Button 
                   variant="outline" 
                   className="w-full justify-start"
                   asChild
                 >
-                  <a href="/resume.pdf" target="_blank" rel="noopener noreferrer">
+                  <a href="public/ArvinderSinghDhoul_Resume.pdf" target="_blank" rel="noopener noreferrer">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </a>
@@ -244,7 +244,7 @@ const Contact = () => {
                   </a>
                 </Button>
               </CardContent>
-            </Card>
+            </Card> */}
           </div>
         </div>
       </div>

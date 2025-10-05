@@ -76,12 +76,12 @@ const Footer = () => {
           {/* Copyright & Credits */}
           <div className="text-center lg:text-right">
             <p className="text-muted-foreground text-sm flex items-center justify-center lg:justify-end gap-1">
-              © 2024 Arvinder Singh. Made with <Heart className="h-4 w-4 text-red-500" /> and React
+              © 2025 Arvinder Singh. Made with <Heart className="h-4 w-4 text-red-500" /> and React
             </p>
           </div>
         </div>
 
-        {/* Additional Links */}
+        {/* Additional Links
         <div className="mt-8 pt-8 border-t border-border/50">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <div className="flex flex-wrap justify-center sm:justify-start gap-4 text-sm">
@@ -99,7 +99,7 @@ const Footer = () => {
               Last updated: September 2025
             </p>
           </div>
-        </div>
+        </div> */}
       </div>
     </footer>
   );
