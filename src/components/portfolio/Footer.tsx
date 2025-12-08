@@ -76,7 +76,7 @@ const Footer = () => {
           {/* Copyright & Credits */}
           <div className="text-center lg:text-right">
             <p className="text-muted-foreground text-sm flex items-center justify-center lg:justify-end gap-1">
-              © 2025 Arvinder Singh. Made with <Heart className="h-4 w-4 text-red-500" /> and React
+              © 2025 Arvinder Singh Dhoul.
             </p>
           </div>
         </div>
