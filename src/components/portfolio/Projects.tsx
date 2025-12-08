@@ -10,7 +10,7 @@ import {
   Server,
   Brain,
 } from "lucide-react";
-
+const Projects = () => {
 const projects = [
     {
       title: "Customer Retention & Churn Risk Dashboard",
