@@ -11,21 +11,83 @@ import {
   Brain,
 } from "lucide-react";
 
-const Projects = () => {
-  const projects = [
+const projects = [
+    {
+      title: "Customer Retention & Churn Risk Dashboard",
+      description:
+        "Engineered and deployed a Full-Stack Data Science application that translated XGBoost predictions into actionable business insights[cite: 23]. Designed a decision-support interface to simulate retention strategies, maximizing Customer Lifetime Value (CLV) by identifying high-risk clients[cite: 24]. Achieved optimal model generalization and stability by employing rigorous Hyperparameter Tuning techniques[cite: 25].",
+      icon: <Brain className="h-6 w-6" />,
+      technologies: ["Python", "XGBoost", "FastAPI", "Hyperparameter Tuning", "Streamlit"],
+      category: "Full-Stack Data Science",
+      githubUrl: "https://github.com/arvinder004/customer-retention-risk-dashboard", // Inferred from portfolio link pattern
+      liveUrl: "https://arvinder-portfolio/customer-retention-risk-dashboard-live", // Inferred from portfolio link pattern
+      features: [
+        "Full-Stack Data Science application deployment [cite: 23]",
+        "XGBoost predictions for churn risk analysis [cite: 21, 23]",
+        "Decision-support interface to maximize Customer Lifetime Value (CLV) [cite: 24]",
+        "Rigorous Hyperparameter Tuning for model stability [cite: 25]",
+      ],
+    },
+    {
+      title: "Student Exam Performance Predictor",
+      description:
+        "Architected the entire ML workflow (EDA → Training) into modular code, ensuring model reproducibility and pipeline consistency[cite: 33]. Deployed a lightweight Flask API/UI for real-time inference, enabling quick model validation and prediction serving[cite: 34]. Managed and version-controlled all experiment artifacts and training runs, showcasing structured MLOps development proficiency[cite: 35].",
+      icon: <Brain className="h-6 w-6" />,
+      technologies: ["MLOps", "Flask", "Modular Coding", "Data Science", "Deployment"],
+      category: "MLOps & Deployment",
+      githubUrl: "https://github.com/arvinder004/student-performance-predictor", // Inferred from portfolio link pattern
+      features: [
+        "Modular ML workflow architecture for reproducibility [cite: 33]",
+        "Deployed a lightweight Flask API/UI for real-time inference [cite: 34]",
+        "Managed and version-controlled all experiment artifacts [cite: 35]",
+        "Showcases structured MLOps development proficiency [cite: 35]",
+      ],
+    },
+    {
+      title: "Telecom Customer Churn Prediction Model",
+      description:
+        "Designed a foundational Machine Learning model to identify customer churn signals using real-world Telecom KPIs (data usage, billing, etc.)[cite: 44]. Compared and evaluated Random Forest and Logistic Regression performance to determine the optimal predictive algorithm[cite: 45].",
+      icon: <Brain className="h-6 w-6" />,
+      technologies: ["Python", "Random Forest", "Logistic Regression", "Streamlit", "Deployment"],
+      category: "Machine Learning",
+      githubUrl: "https://github.com/arvinder004/telecom-churn-prediction-model", // Inferred from portfolio link pattern
+      liveUrl: "https://arvinder-portfolio/telecom-churn-prediction-model-live", // Inferred from portfolio link pattern
+      features: [
+        "Machine Learning model for customer churn prediction [cite: 44]",
+        "Utilized real-world Telecom KPIs (data usage, billing) [cite: 44]",
+        "Performance comparison of Random Forest and Logistic Regression [cite: 45]",
+        "Deployed with Streamlit (based on listed technologies) [cite: 43]",
+      ],
+    },
+    {
+      title: "Simple Task Management System",
+      description:
+        "Developed a secure, Full-Stack MERN application to streamline task tracking, demonstrating strong backend engineering discipline[cite: 48]. Implemented robust role-based access control and secure authentication using JSON Web Tokens (JWT) for Admin/User dashboards[cite: 49].",
+      icon: <Brain className="h-6 w-6" />,
+      technologies: ["React.js", "Node.js", "Express.js", "MongoDB", "JWT"],
+      category: "Full-Stack Development",
+      githubUrl: "https://github.com/arvinder004/simple-task-management-system", // Inferred from portfolio link pattern
+      liveUrl: "https://arvinder-portfolio/simple-task-management-system-live", // Inferred from portfolio link pattern
+      features: [
+        "Full-Stack MERN application for task tracking [cite: 46, 48]",
+        "Secure authentication using JSON Web Tokens (JWT) [cite: 49]",
+        "Robust role-based access control [cite: 49]",
+        "Demonstrates strong backend engineering discipline [cite: 48]",
+      ],
+    },
     {
       title: "Sentiment Analysis",
       description:
-        "This project is a deep learning-based sentiment analysis tool for classifying tweets as either positive or negative. It utilizes a Bidirectional LSTM (Long Short-Term Memory) model built with TensorFlow and Keras.",
+        "This project is a deep learning-based sentiment analysis tool for classifying tweets as either positive or negative. It utilizes a Bidirectional LSTM (Long Short-Term Memory) model built with TensorFlow and Keras[cite: 28].",
       icon: <Brain className="h-6 w-6" />,
       technologies: ["Python", "Scikit-learn", "TensorFlow", "NLTK", "Pandas"],
       category: "NLP",
       githubUrl: "https://github.com/arvinder004/sentiment_analysis",
       features: [
-        "Bidirectional LSTM model for high accuracy",
-        "Real-time tweet sentiment classification",
-        "Advanced text preprocessing and cleaning",
-        "Built with TensorFlow and Keras",
+        "Bidirectional LSTM model for high accuracy [cite: 28]",
+        "Advanced text preprocessing and cleaning using NLTK/Scikit-Learn [cite: 29]",
+        "Demonstrates expertise in DL model building and training [cite: 30]",
+        "Built with TensorFlow and Keras [cite: 28]",
       ],
     },
     {
@@ -46,19 +108,19 @@ const Projects = () => {
     {
       title: "Face Recognition Attendance System",
       description:
-        "Pioneered an AI-powered attendance system using OpenCV and KNN, achieving 98% accurate face recognition from PKL-stored profiles for precise in/out time logging via camera input. Seamlessly integrated Haar Cascade Classifier for face detection, logging 100+ daily work hours into CSV files. Boosted workplace efficiency by 30% through automation of routine tracking, deploying scalable AI-driven solutions.",
+        "Pioneered an AI-powered attendance system using OpenCV and KNN, achieving 98% accurate face recognition from PKL-stored profiles for precise in/out time logging via camera input[cite: 40]. Seamlessly integrated Haar Cascade Classifier for face detection[cite: 39], logging 100+ daily work hours into CSV files. Boosted workplace efficiency by 30% through automation of routine tracking, deploying scalable AI-driven solutions.",
       icon: <BarChart className="h-6 w-6" />,
-      technologies: ["OpenCV", "Python"],
-      category: "Machine Learning",
+      technologies: ["OpenCV", "Python", "KNN", "Haar Cascade Classifier"],
+      category: "Computer Vision",
       githubUrl:
         "https://github.com/arvinder004/face-recognition-based-attendance-system",
       liveUrl:
         "https://www.linkedin.com/feed/update/urn:li:activity:7319757909666488320/",
       features: [
-        "AI-powered attendance with 98% accuracy using OpenCV & KNN",
+        "AI-powered attendance with 98% accuracy using OpenCV & KNN [cite: 40]",
         "Real-time face recognition for in/out time logging",
-        "Automated work hour tracking with CSV export",
-        "Haar Cascade Classifier for robust face detection",
+        "Automated work hour tracking (efficiency boosted by 30%) ",
+        "Haar Cascade Classifier for robust face detection [cite: 39]",
       ],
     },
     {
