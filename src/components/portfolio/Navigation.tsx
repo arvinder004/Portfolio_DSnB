@@ -81,7 +81,7 @@ const Navigation = () => {
               className="border-primary/50 hover:bg-primary/10"
               asChild
             >
-              <a href="https://drive.google.com/file/d/14X3jz6yBJ6c_pMy_c9hex4lfqYnv6mEL/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+              <a href="https://drive.google.com/file/d/1RV0NNpMWx05LcLRFPTFN7c_L3I65CpvI/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                 <Download className="mr-2 h-4 w-4" />
                 Resume
               </a>
@@ -123,7 +123,7 @@ const Navigation = () => {
                   className="w-full border-primary/50 hover:bg-primary/10"
                   asChild
                 >
-                  <a href="https://drive.google.com/file/d/1PacE1ap2FW72TlOobSl5NhMqIIF4gVSN/view?usp=sharing" target="_blank" rel="noopener noreferrer">
+                  <a href="https://drive.google.com/file/d/1RV0NNpMWx05LcLRFPTFN7c_L3I65CpvI/view?usp=sharing" target="_blank" rel="noopener noreferrer">
                     <Download className="mr-2 h-4 w-4" />
                     Download Resume
                   </a>
