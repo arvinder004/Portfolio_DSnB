@@ -1,89 +1,82 @@
-import React from 'react';
-import { Card, CardContent } from "../ui/card";
-import { Badge } from "../ui/badge";
-import { Code, Database, Server, BarChart, Cloud } from "lucide-react";
+import { BarChart3, Cloud, Database, Server } from "lucide-react";
+
+const pillars = [
+  {
+    title: "LLM applications",
+    description: "RAG pipelines, agent workflows, and evaluation loops built for dependable outputs.",
+    icon: Database,
+  },
+  {
+    title: "Backend systems",
+    description: "Python and Node services designed to support product features, persistence, and scale.",
+    icon: Server,
+  },
+  {
+    title: "Product delivery",
+    description: "From freelance client websites to internal AI tools, I like taking ideas to live deployment.",
+    icon: Cloud,
+  },
+  {
+    title: "Research mindset",
+    description: "Comfortable comparing models, publishing findings, and validating ideas with evidence.",
+    icon: BarChart3,
+  },
+];
 
 const About = () => {
-  const highlights = [
-    {
-      icon: <Database className="h-6 w-6" />,
-      title: "Data Science",
-      description: "Machine learning, statistical analysis, and predictive modeling"
-    },
-    {
-      icon: <Server className="h-6 w-6" />,
-      title: "Backend Development",
-      description: "Scalable APIs, microservices, and database architecture"
-    },
-    {
-      icon: <Cloud className="h-6 w-6" />,
-      title: "DevOps",
-      description: "Cloud infrastructure, CI/CD pipelines, and containerization"
-    },
-    {
-      icon: <BarChart className="h-6 w-6" />,
-      title: "Analytics",
-      description: "Business intelligence, data visualization, and insights"
-    }
-  ];
-
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl font-bold mb-4 text-glow">About Me</h2>
-          <div className="relative inline-block">
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-              Passionate about leveraging data and technology to solve complex problems. 
-              With 3+ years of experience in data science and backend development, 
-              I bring a unique blend of analytical thinking and technical expertise.
-            </p>
-            <div className="absolute -inset-2 bg-gradient-accent opacity-10 blur-xl rounded-lg"></div>
-          </div>
+    <section className="section-shell">
+      <div className="mx-auto flex max-w-6xl flex-col gap-10">
+        <div className="max-w-3xl animate-fade-in-up">
+          <span className="section-kicker">About</span>
+          <h2 className="mt-6 text-4xl font-bold sm:text-5xl">A builder who likes the product, the model, and the infrastructure behind both.</h2>
+          <p className="mt-6 text-lg leading-8 text-muted-foreground">
+            I’m currently finishing my Bachelor of Technology in Computer Science and Business Systems
+            at Gyan Ganga Institute of Technology & Sciences. My recent work has moved strongly
+            toward LLM applications, RAG systems, and full-stack AI products that need both strong
+            engineering and clear user-facing outcomes.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-          {/* About Text */}
-          <div className="animate-fade-in-left">
-            <h3 className="text-2xl font-semibold mb-6">My Journey</h3>
-            <p className="text-muted-foreground mb-6">
-              Started as a curious computer science student fascinated by the intersection of mathematics 
-              and programming. Over the years, I've evolved into a full-stack data professional who thrives 
-              on transforming raw data into actionable insights and building robust systems that scale.
-            </p>
-            <p className="text-muted-foreground mb-6">
-              My expertise spans the entire data pipeline - from data collection and processing to 
-              machine learning model deployment and infrastructure management. I believe in writing 
-              clean, maintainable code and following best practices in software development.
-            </p>
-            
-            <div className="flex flex-wrap gap-2">
-              <Badge variant="secondary">Python</Badge>
-              <Badge variant="secondary">Machine Learning</Badge>
-              <Badge variant="secondary">Node.js</Badge>
-              <Badge variant="secondary">Docker</Badge>
-              <Badge variant="secondary">AWS</Badge>
+        <div className="section-grid">
+          <div className="section-panel animate-fade-in-left lg:col-span-5">
+            <p className="eyebrow-line">Approach</p>
+            <div className="mt-6 space-y-6 text-base leading-8 text-muted-foreground">
+              <p>
+                I like projects where the hard part is not just getting a model to work, but
+                getting it to behave reliably in a real product. That includes prompt design,
+                grounding strategies, typed validation, persistent state, and backend architecture
+                that supports iteration instead of fighting it.
+              </p>
+              <p>
+                Alongside internships and freelance work, I’ve also contributed to research around
+                face detection systems and generative AI-powered collaborative robotics, which keeps
+                my engineering work anchored in experimentation and comparison rather than hype.
+              </p>
+            </div>
+
+            <div className="mt-8 flex flex-wrap gap-3">
+              {["LangChain", "LangGraph", "Next.js", "Node.js", "MongoDB", "Docker"].map((tag) => (
+                <span
+                  key={tag}
+                  className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-foreground/90"
+                >
+                  {tag}
+                </span>
+              ))}
             </div>
           </div>
 
-          {/* Highlights Grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 animate-fade-in-right">
-          {highlights.map((item, index) => (
-            <Card key={index} className="glass-card group relative overflow-hidden animate-fade-in-right">
-              {/* Shimmer effect */}
-              <div className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/5 to-transparent group-hover:translate-x-full transition-transform duration-1000 ease-in-out"></div>
-              
-              <CardContent className="p-6 relative z-10">
-                <div className="p-3 rounded-xl bg-gradient-to-br from-primary/20 to-accent/20 border border-primary/30 shadow-glow group-hover:shadow-intense transition-all duration-500 inline-block mb-4">
-                  <div className="text-primary group-hover:scale-110 transition-transform duration-300">
-                    {item.icon}
-                  </div>
+          <div className="grid gap-5 animate-fade-in-right sm:grid-cols-2 lg:col-span-7">
+            {pillars.map(({ title, description, icon: Icon }) => (
+              <article key={title} className="glass-card p-6">
+                <div className="inline-flex rounded-2xl border border-primary/20 bg-primary/10 p-3 text-primary">
+                  <Icon className="h-5 w-5" />
                 </div>
-                <h4 className="font-semibold mb-2 group-hover:text-primary transition-colors duration-300">{item.title}</h4>
-                <p className="text-sm text-muted-foreground group-hover:text-foreground transition-colors duration-300">{item.description}</p>
-              </CardContent>
-            </Card>
-          ))}
+                <h3 className="mt-5 text-xl font-semibold">{title}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{description}</p>
+              </article>
+            ))}
           </div>
         </div>
       </div>

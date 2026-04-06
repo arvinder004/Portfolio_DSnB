@@ -1,157 +1,121 @@
-import React from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Building, Calendar, MapPin } from "lucide-react";
+import { BookOpen, BriefcaseBusiness, MapPin } from "lucide-react";
+
+const experiences = [
+  {
+    company: "Compucom CSI Systems",
+    role: "AI Engineer Intern",
+    period: "Feb 2026 - May 2026",
+    location: "Pune, India",
+    points: [
+      "Designed scalable Retrieval-Augmented Generation pipelines using LangChain and vector databases.",
+      "Built full-stack AI applications with Next.js frontends and Node.js microservices.",
+      "Optimized prompting and grounding strategies to improve response reliability and reduce hallucinations.",
+    ],
+  },
+  {
+    company: "RIU Global",
+    role: "Freelance Web Developer",
+    period: "Nov 2025 - Jan 2026",
+    location: "Remote",
+    points: [
+      "Developed and deployed a production-ready multi-page marketing website for an international telecom training provider.",
+      "Implemented an admin dashboard for course management, content updates, and customizable program listings.",
+      "Handled domain deployment and hosting for the live platform, with attention to scalability and performance.",
+    ],
+  },
+];
+
+const research = [
+  "Performance Evaluation and Comparison of YOLOv8, MobileNet-SSD, and MTCNN for Face Detection in Smart Attendance System",
+  "Generative AI-Powered COBOTs for Human-Centric Collaboration and Co-Evolution",
+];
+
+const achievements = [
+  "GATE 2025 qualified in Computer Science and IT",
+  "NPTEL Elite certified in DBMS and Ethical Hacking",
+  "Finalist in Smart India Hackathon 2023 and Solve to Evolve Hackathon at IIT Madras",
+];
 
 const Experience = () => {
-  const experiences = [
-    {
-      company: "TechCorp Solutions",
-      position: "Senior Data Scientist",
-      location: "San Francisco, CA",
-      duration: "2022 - Present",
-      type: "Full-time",
-      description: "Leading a team of 5 data scientists in developing ML models for customer analytics and business optimization. Implemented end-to-end ML pipelines that increased customer retention by 25%.",
-      achievements: [
-        "Built predictive models that improved customer lifetime value prediction by 40%",
-        "Designed and implemented real-time recommendation engine serving 1M+ users",
-        "Led migration from on-premise to cloud-based ML infrastructure",
-        "Mentored junior data scientists and established ML best practices"
-      ],
-      technologies: ["Python", "TensorFlow", "AWS", "Apache Spark", "PostgreSQL", "Docker"]
-    },
-    {
-      company: "DataFlow Inc",
-      position: "Backend Developer & ML Engineer",
-      location: "New York, NY",
-      duration: "2020 - 2022",
-      type: "Full-time",
-      description: "Developed scalable backend systems and ML models for fintech applications. Built high-performance APIs processing millions of transactions daily with 99.9% uptime.",
-      achievements: [
-        "Architected microservices handling 10M+ API calls per day",
-        "Reduced system response time by 60% through optimization",
-        "Implemented fraud detection model with 95% accuracy",
-        "Established CI/CD pipelines reducing deployment time by 80%"
-      ],
-      technologies: ["Node.js", "Python", "Kubernetes", "MongoDB", "Redis", "Jenkins"]
-    },
-    {
-      company: "StartupXYZ",
-      position: "Full Stack Developer",
-      location: "Austin, TX",
-      duration: "2019 - 2020",
-      type: "Full-time",
-      description: "Early-stage startup role developing web applications and data analytics tools. Wore multiple hats including frontend, backend, and data analysis responsibilities.",
-      achievements: [
-        "Built complete web application from scratch using React and Node.js",
-        "Developed analytics dashboard processing 100K+ daily events",
-        "Implemented automated reporting system saving 20 hours/week",
-        "Created data pipeline for real-time business metrics"
-      ],
-      technologies: ["React", "Node.js", "Express", "MySQL", "AWS", "Python"]
-    },
-    {
-      company: "University Research Lab",
-      position: "Data Science Intern",
-      location: "Boston, MA",
-      duration: "2018 - 2019",
-      type: "Internship",
-      description: "Research assistant working on machine learning projects for academic publications. Focused on natural language processing and computer vision applications.",
-      achievements: [
-        "Co-authored 2 research papers published in peer-reviewed journals",
-        "Developed NLP model for sentiment analysis with 92% accuracy",
-        "Created automated data collection and preprocessing pipelines",
-        "Presented findings at 3 international conferences"
-      ],
-      technologies: ["Python", "scikit-learn", "NLTK", "OpenCV", "Jupyter", "TensorFlow"]
-    }
-  ];
-
-  const typeColors = {
-    "Full-time": "bg-green-500/10 text-green-500 border-green-500/30",
-    "Internship": "bg-blue-500/10 text-blue-500 border-blue-500/30"
-  };
-
   return (
-    <section className="py-20 px-4 sm:px-6 lg:px-8 bg-secondary/20">
-      <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 animate-fade-in-up">
-          <h2 className="text-4xl font-bold mb-4 text-glow">Professional Experience</h2>
-          <div className="relative inline-block">
-            <p className="text-xl text-muted-foreground">
-              My journey through data science, backend development, and DevOps roles
-            </p>
-            <div className="absolute -inset-2 bg-gradient-accent opacity-10 blur-xl rounded-lg"></div>
+    <section className="section-shell">
+      <div className="mx-auto max-w-6xl">
+        <div className="section-panel">
+          <div className="max-w-3xl animate-fade-in-up">
+            <span className="section-kicker">Experience</span>
+            <h2 className="mt-6 text-4xl font-bold sm:text-5xl">Recent roles, education, and research work.</h2>
           </div>
-        </div>
 
-        <div className="space-y-8">
-          {experiences.map((exp, index) => (
-            <Card 
-              key={index} 
-              className="glass-card hover:scale-[1.02] transition-all duration-300 animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.1}s` }}
-            >
-              <CardHeader className="pb-4">
-                <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
-                  <div>
-                    <CardTitle className="text-xl mb-2">{exp.position}</CardTitle>
-                    <div className="flex items-center gap-2 text-muted-foreground mb-2">
-                      <Building className="h-4 w-4" />
-                      <span className="font-medium">{exp.company}</span>
+          <div className="mt-12 grid gap-6 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="space-y-6">
+              {experiences.map((item) => (
+                <article key={`${item.company}-${item.role}`} className="glass-card p-6 sm:p-7">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-primary">
+                      <BriefcaseBusiness className="h-5 w-5" />
                     </div>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground">
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-4 w-4" />
-                        <span>{exp.duration}</span>
-                      </div>
-                      <div className="flex items-center gap-1">
+                    <div>
+                      <p className="text-sm uppercase tracking-[0.22em] text-accent">{item.period}</p>
+                      <h3 className="mt-2 text-2xl font-semibold">{item.role}</h3>
+                      <p className="mt-1 text-sm text-foreground/90">{item.company}</p>
+                      <div className="mt-2 flex items-center gap-2 text-sm text-muted-foreground">
                         <MapPin className="h-4 w-4" />
-                        <span>{exp.location}</span>
+                        {item.location}
                       </div>
                     </div>
                   </div>
-                  <Badge 
-                    variant="outline" 
-                    className={typeColors[exp.type as keyof typeof typeColors]}
-                  >
-                    {exp.type}
-                  </Badge>
-                </div>
-              </CardHeader>
-              
-              <CardContent className="space-y-6">
-                <p className="text-muted-foreground leading-relaxed">
-                  {exp.description}
-                </p>
-
-                {/* Key Achievements */}
-                <div>
-                  <h4 className="font-medium mb-3">Key Achievements:</h4>
-                  <ul className="space-y-2">
-                    {exp.achievements.map((achievement, achievementIndex) => (
-                      <li key={achievementIndex} className="flex items-start gap-2 text-sm text-muted-foreground">
-                        <span className="w-1.5 h-1.5 bg-primary rounded-full mt-2 flex-shrink-0"></span>
-                        <span>{achievement}</span>
+                  <ul className="mt-6 space-y-3 text-sm leading-7 text-muted-foreground">
+                    {item.points.map((point) => (
+                      <li key={point} className="flex items-start gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                        <span>{point}</span>
                       </li>
                     ))}
                   </ul>
-                </div>
+                </article>
+              ))}
+            </div>
 
-                {/* Technologies */}
-                <div>
-                  <h4 className="font-medium mb-3">Technologies Used:</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, techIndex) => (
-                      <Badge key={techIndex} variant="secondary" className="text-xs">
-                        {tech}
-                      </Badge>
-                    ))}
+            <div className="space-y-6">
+              <article className="glass-card p-6 sm:p-7">
+                <div className="flex items-start gap-4">
+                  <div className="rounded-2xl border border-white/10 bg-white/5 p-3 text-primary">
+                    <BookOpen className="h-5 w-5" />
+                  </div>
+                  <div>
+                    <p className="text-sm uppercase tracking-[0.22em] text-accent">Education</p>
+                    <h3 className="mt-2 text-2xl font-semibold">B.Tech. Computer Science and Business Systems</h3>
+                    <p className="mt-1 text-sm text-foreground/90">Gyan Ganga Institute of Technology & Sciences</p>
+                    <p className="mt-2 text-sm text-muted-foreground">Oct 2022 - May 2026 · Jabalpur, India · CGPA: 8.24</p>
                   </div>
                 </div>
-              </CardContent>
-            </Card>
-          ))}
+              </article>
+
+              <article className="glass-card p-6 sm:p-7">
+                <p className="text-sm uppercase tracking-[0.22em] text-accent">Research</p>
+                <ul className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground">
+                  {research.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+
+              <article className="glass-card p-6 sm:p-7">
+                <p className="text-sm uppercase tracking-[0.22em] text-accent">Highlights</p>
+                <ul className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground">
+                  {achievements.map((item) => (
+                    <li key={item} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
+            </div>
+          </div>
         </div>
       </div>
     </section>

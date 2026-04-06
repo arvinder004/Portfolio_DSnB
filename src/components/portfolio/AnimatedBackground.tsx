@@ -1,33 +1,27 @@
-import React from 'react';
+const dots = [
+  { top: "14%", left: "10%", size: "h-2 w-2", color: "bg-primary/60", delay: "0s" },
+  { top: "24%", left: "76%", size: "h-3 w-3", color: "bg-accent/50", delay: "0.8s" },
+  { top: "48%", left: "22%", size: "h-1.5 w-1.5", color: "bg-white/30", delay: "1.4s" },
+  { top: "68%", left: "82%", size: "h-2 w-2", color: "bg-primary/40", delay: "2s" },
+  { top: "78%", left: "36%", size: "h-2.5 w-2.5", color: "bg-accent/40", delay: "2.6s" },
+];
 
 const AnimatedBackground = () => {
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Gradient Orbs */}
-      <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-r from-primary/20 to-accent/20 rounded-full blur-3xl animate-float opacity-30"></div>
-      <div className="absolute top-1/3 right-20 w-96 h-96 bg-gradient-to-r from-accent/15 to-primary/15 rounded-full blur-3xl floating-element-delayed opacity-25"></div>
-      <div className="absolute bottom-20 left-1/4 w-64 h-64 bg-gradient-to-r from-primary-glow/20 to-accent/20 rounded-full blur-3xl animate-pulse-slow opacity-20"></div>
-      
-      {/* Particle Grid */}
-      <div className="absolute inset-0">
-        {Array.from({ length: 50 }).map((_, i) => (
-          <div
-            key={i}
-            className="absolute w-1 h-1 bg-primary/30 rounded-full animate-pulse"
-            style={{
-              left: `${Math.random() * 100}%`,
-              top: `${Math.random() * 100}%`,
-              animationDelay: `${Math.random() * 3}s`,
-              animationDuration: `${2 + Math.random() * 3}s`
-            }}
-          />
-        ))}
-      </div>
-      
-      {/* Geometric Shapes */}
-      <div className="absolute top-1/4 left-1/3 w-2 h-2 border border-primary/20 rotate-45 animate-spin opacity-40" style={{ animationDuration: '20s' }}></div>
-      <div className="absolute bottom-1/3 right-1/4 w-3 h-3 border border-accent/20 animate-bounce opacity-30" style={{ animationDelay: '1s' }}></div>
-      <div className="absolute top-2/3 left-1/5 w-1.5 h-1.5 bg-primary-glow/40 rounded-full animate-pulse" style={{ animationDelay: '2s' }}></div>
+    <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
+      <div className="absolute left-[-8rem] top-[-5rem] h-80 w-80 rounded-full bg-primary/10 blur-3xl" />
+      <div className="absolute right-[-10rem] top-[18%] h-[28rem] w-[28rem] rounded-full bg-accent/10 blur-3xl" />
+      <div className="absolute bottom-[-8rem] left-[20%] h-72 w-72 rounded-full bg-primary/10 blur-3xl" />
+
+      <div className="absolute inset-0 opacity-40" style={{ backgroundImage: "linear-gradient(hsl(0 0% 100% / 0.04) 1px, transparent 1px), linear-gradient(90deg, hsl(0 0% 100% / 0.04) 1px, transparent 1px)", backgroundSize: "72px 72px" }} />
+
+      {dots.map((dot) => (
+        <span
+          key={`${dot.top}-${dot.left}`}
+          className={`absolute rounded-full ${dot.size} ${dot.color} animate-pulse`}
+          style={{ top: dot.top, left: dot.left, animationDelay: dot.delay }}
+        />
+      ))}
     </div>
   );
 };

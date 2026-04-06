@@ -1,4 +1,3 @@
-import React from 'react';
 import Navigation from '@/components/portfolio/Navigation';
 import Hero from '@/components/portfolio/Hero';
 import About from '@/components/portfolio/About';
@@ -32,9 +31,9 @@ const Index = () => {
           <Projects />
         </section>
         
-        {/* <section id="experience">
+        <section id="experience">
           <Experience />
-        </section> */}
+        </section>
         
         <section id="contact">
           <Contact />
