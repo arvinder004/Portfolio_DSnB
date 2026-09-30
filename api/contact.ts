@@ -1,7 +1,3 @@
-// Tell Vercel to run this function on the Node.js runtime (not Edge).
-// Required because we use process.env and the Resend fetch call.
-export const config = { runtime: "nodejs" };
-
 type ContactPayload = {
   name?: string;
   email?: string;
