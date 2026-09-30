@@ -35,7 +35,7 @@ const Index = () => {
             </div>
             
             <div className="mt-8 flex w-full flex-col items-center gap-6 animate-fade-in-up stagger-1">
-              <Button size="lg" className="h-14 px-8 text-lg bg-primary text-primary-foreground hover:bg-primary/90" onClick={openGlobalChat}>
+              <Button size="lg" variant="hero" className="h-14 px-8 text-lg" onClick={openGlobalChat}>
                 Experience the Future
               </Button>
               <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground">

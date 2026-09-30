@@ -121,10 +121,10 @@ const ChatWidget = () => {
   };
 
   return (
-    <div className="mx-auto w-full max-w-3xl animate-fade-in-up">
-      <div className="flex h-[55vh] min-h-[400px] max-h-[600px] w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-background/40 shadow-2xl backdrop-blur-xl">
+    <div className="mx-auto w-full max-w-full animate-fade-in-up">
+      <div className="flex h-[80vh] min-h-[500px] max-h-[850px] w-full flex-col overflow-hidden rounded-[0.25rem] border border-border bg-background shadow-lg">
         {/* Header */}
-        <div className="flex items-center justify-center border-b border-white/10 bg-white/5 px-4 py-4">
+        <div className="flex items-center justify-center border-b border-border bg-secondary px-4 py-4">
           <div className="flex items-center gap-2">
             <Bot className="h-5 w-5 text-primary" />
             <span className="font-medium text-foreground tracking-wide">Ask Arvinder's AI</span>
@@ -138,7 +138,7 @@ const ChatWidget = () => {
             >
               {messages.length === 0 ? (
                 <div className="flex h-full flex-col items-center justify-center text-center">
-                  <div className="mb-4 rounded-full bg-primary/10 p-4">
+                  <div className="mb-4 rounded-[0.25rem] bg-secondary p-4 border border-border">
                     <Bot className="h-8 w-8 text-primary" />
                   </div>
                   <h3 className="mb-2 font-medium text-foreground">Hi there!</h3>
@@ -151,7 +151,7 @@ const ChatWidget = () => {
                         key={q}
                         onClick={() => handleSuggestedQuestion(q)}
                         disabled={isLoading}
-                        className="rounded-xl border border-white/10 bg-white/5 px-3 py-2 text-left text-sm text-muted-foreground transition hover:bg-primary/10 hover:text-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                        className="rounded-[0.25rem] border border-border bg-secondary px-3 py-2 text-left text-sm text-foreground transition hover:bg-card hover:border-primary/50 disabled:opacity-50 disabled:cursor-not-allowed"
                       >
                         {q}
                       </button>
@@ -168,10 +168,10 @@ const ChatWidget = () => {
                       }`}
                     >
                       <div
-                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-full ${
+                        className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.25rem] border border-border ${
                           m.role === "user"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-white/10 text-foreground"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-secondary text-foreground"
                         }`}
                       >
                         {m.role === "user" ? (
@@ -181,10 +181,10 @@ const ChatWidget = () => {
                         )}
                       </div>
                       <div
-                        className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm text-left ${
+                        className={`max-w-[85%] rounded-[0.25rem] border border-border px-4 py-2 text-sm text-left ${
                           m.role === "user"
-                            ? "bg-primary text-primary-foreground"
-                            : "bg-white/5 text-foreground"
+                            ? "bg-primary text-primary-foreground border-primary"
+                            : "bg-secondary text-foreground"
                         }`}
                       >
                         {m.role === "user" ? (
@@ -199,13 +199,13 @@ const ChatWidget = () => {
                                 ol: ({ node, ...props }) => <ol className="mb-2 ml-4 list-decimal last:mb-0" {...props} />,
                                 li: ({ node, ...props }) => <li className="mb-1 last:mb-0" {...props} />,
                                 table: ({ node, ...props }) => (
-                                  <div className="my-4 w-full overflow-x-auto rounded-lg border border-white/10">
+                                  <div className="my-4 w-full overflow-x-auto rounded-[0.25rem] border border-border">
                                     <table className="w-full text-left text-sm" {...props} />
                                   </div>
                                 ),
-                                thead: ({ node, ...props }) => <thead className="bg-white/5 text-xs uppercase" {...props} />,
-                                tbody: ({ node, ...props }) => <tbody className="divide-y divide-white/10" {...props} />,
-                                tr: ({ node, ...props }) => <tr className="transition-colors hover:bg-white/5" {...props} />,
+                                thead: ({ node, ...props }) => <thead className="bg-secondary text-xs uppercase" {...props} />,
+                                tbody: ({ node, ...props }) => <tbody className="divide-y divide-border" {...props} />,
+                                tr: ({ node, ...props }) => <tr className="transition-colors hover:bg-card" {...props} />,
                                 th: ({ node, ...props }) => <th className="px-4 py-3 font-medium text-white" {...props} />,
                                 td: ({ node, ...props }) => <td className="px-4 py-3" {...props} />,
                               }}
@@ -219,10 +219,10 @@ const ChatWidget = () => {
                   ))}
                   {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
                     <div className="flex gap-3">
-                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-foreground">
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-[0.25rem] border border-border bg-secondary text-foreground">
                         <Bot className="h-4 w-4" />
                       </div>
-                      <div className="flex items-center justify-center rounded-2xl bg-white/5 px-4 py-2">
+                      <div className="flex items-center justify-center rounded-[0.25rem] border border-border bg-secondary px-4 py-2">
                         <Loader2 className="h-4 w-4 animate-spin text-muted-foreground" />
                       </div>
                     </div>
@@ -232,10 +232,10 @@ const ChatWidget = () => {
             </div>
 
             {/* Input Area */}
-            <div className="border-t border-white/10 p-3">
+            <div className="border-t border-border p-3">
               <form
                 onSubmit={onSubmit}
-                className="flex items-center gap-2 rounded-xl border border-white/10 bg-background/50 p-1"
+                className="flex items-center gap-2 rounded-[0.25rem] border border-border bg-secondary p-1"
               >
                 <input
                   className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
@@ -250,7 +250,7 @@ const ChatWidget = () => {
                   type="submit"
                   size="icon"
                   disabled={isLoading || !input?.trim()}
-                  className="h-8 w-8 shrink-0 rounded-lg bg-primary hover:bg-primary/90"
+                  className="h-8 w-8 shrink-0 rounded-[0.25rem] bg-primary hover:bg-primary/90 transition-colors"
                 >
                   <Send className="h-4 w-4" />
                 </Button>
