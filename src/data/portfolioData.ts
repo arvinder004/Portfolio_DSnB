@@ -30,7 +30,7 @@ export const hero = {
   stats: [
     {
       value: "AI Engineer",
-      label: "Interning at Compucom CSI Systems — building LLM voice pipelines and RAG workflows",
+      label: "Former AI Engineer Intern at Compucom CSI Systems — LLM voice pipelines and RAG workflows",
     },
     {
       value: "AWS Certified",

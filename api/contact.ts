@@ -14,7 +14,12 @@ const json = (status: number, body: Record<string, string>) =>
   });
 
 export default async function handler(request: Request) {
-  if (request.method !== "POST") {
+  const method = request.method;
+  const url = new URL(request.url);
+  console.log(`[contact] ${method} ${url.pathname}`);
+
+  if (method !== "POST") {
+    console.warn(`[contact] Rejected: method not allowed (${method})`);
     return json(405, { error: "Method not allowed." });
   }
 
@@ -23,6 +28,7 @@ export default async function handler(request: Request) {
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
 
   if (!resendApiKey || !fromEmail) {
+    console.error("[contact] Missing env vars — RESEND_API_KEY or CONTACT_FROM_EMAIL not set");
     return json(500, {
       error: "Email service is not configured. Please set RESEND_API_KEY and CONTACT_FROM_EMAIL.",
     });
@@ -32,7 +38,9 @@ export default async function handler(request: Request) {
 
   try {
     payload = (await request.json()) as ContactPayload;
-  } catch {
+    console.log(`[contact] Payload received — name="${payload.name}", email="${payload.email}", subject="${payload.subject}"`);
+  } catch (err) {
+    console.error("[contact] Failed to parse request body:", err);
     return json(400, { error: "Invalid request payload." });
   }
 
@@ -42,30 +50,46 @@ export default async function handler(request: Request) {
   const message = payload.message?.trim();
 
   if (!name || !email || !subject || !message) {
+    const missing = ["name", "email", "subject", "message"].filter(
+      (k) => !payload[k as keyof ContactPayload]?.trim()
+    );
+    console.warn(`[contact] Validation failed — missing fields: ${missing.join(", ")}`);
     return json(400, { error: "All fields are required." });
   }
 
-  const resendResponse = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${resendApiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [toEmail],
-      reply_to: email,
-      subject: `Portfolio contact: ${subject}`,
-      text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
-    }),
-  });
+  console.log(`[contact] Sending email via Resend — from="${fromEmail}", to="${toEmail}", subject="Portfolio contact: ${subject}"`);
 
-  if (!resendResponse.ok) {
-    const errorText = await resendResponse.text();
-    return json(502, {
-      error: `Resend request failed: ${errorText || resendResponse.statusText}`,
+  try {
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${resendApiKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [toEmail],
+        reply_to: email,
+        subject: `Portfolio contact: ${subject}`,
+        text: `Name: ${name}\nEmail: ${email}\n\n${message}`,
+      }),
+    });
+
+    if (!resendResponse.ok) {
+      const errorText = await resendResponse.text();
+      console.error(`[contact] Resend API error — status=${resendResponse.status}, body=${errorText}`);
+      return json(502, {
+        error: `Resend request failed: ${errorText || resendResponse.statusText}`,
+      });
+    }
+
+    console.log(`[contact] Email sent successfully to "${toEmail}"`);
+    return json(200, { message: "Message sent successfully." });
+
+  } catch (err) {
+    console.error("[contact] Unexpected error while calling Resend API:", err);
+    return json(500, {
+      error: err instanceof Error ? err.message : "Unable to send the message right now. Please try again shortly.",
     });
   }
-
-  return json(200, { message: "Message sent successfully." });
 }
