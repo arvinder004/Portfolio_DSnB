@@ -213,8 +213,8 @@ const ChatWidget = () => {
                 </Button>
               </form>
             </div>
-          </div>
-        </div>
+            </div>
+      </div>
     </div>
   );
 };
