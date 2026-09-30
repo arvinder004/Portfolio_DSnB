@@ -5,10 +5,10 @@ import { MessageCircle, X, Send, User, Bot, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
-  "What is your tech stack?",
-  "Tell me about HireIQ.",
-  "What was your role at Compucom?",
-  "Are you open to internships?",
+  "What is Arvinder's core tech stack?",
+  "Tell me about his experience at Compucom.",
+  "Can you summarize his recent projects?",
+  "How can I get in touch with him?",
 ];
 
 const ChatWidget = () => {
@@ -26,6 +26,22 @@ const ChatWidget = () => {
 
   const handleSuggestedQuestion = (question: string) => {
     append({ role: "user", content: question });
+  };
+
+  const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!input?.trim()) return;
+    handleSubmit(e);
+  };
+
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      if (!input?.trim()) return;
+      // create a mock event for handleSubmit
+      const mockEvent = { preventDefault: () => {} } as React.FormEvent<HTMLFormElement>;
+      handleSubmit(mockEvent);
+    }
   };
 
   return (
@@ -129,7 +145,7 @@ const ChatWidget = () => {
             {/* Input Area */}
             <div className="border-t border-white/10 p-3">
               <form
-                onSubmit={handleSubmit}
+                onSubmit={onSubmit}
                 className="flex items-center gap-2 rounded-xl border border-white/10 bg-background/50 p-1"
               >
                 <input
@@ -137,6 +153,7 @@ const ChatWidget = () => {
                   value={input}
                   placeholder="Ask me anything..."
                   onChange={handleInputChange}
+                  onKeyDown={handleKeyDown}
                   disabled={isLoading}
                 />
                 <Button
