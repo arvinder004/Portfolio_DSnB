@@ -24,6 +24,14 @@ const ChatWidget = () => {
   const [isLoading, setIsLoading] = useState(false);
 
   const scrollContainerRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const timeout = setTimeout(() => {
+      inputRef.current?.focus();
+    }, 100);
+    return () => clearTimeout(timeout);
+  }, []);
 
   useEffect(() => {
     if (scrollContainerRef.current) {
@@ -238,12 +246,14 @@ const ChatWidget = () => {
                 className="flex items-center gap-2 rounded-[0.25rem] border border-border bg-secondary p-1"
               >
                 <input
+                  ref={inputRef}
                   className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
                   value={input}
                   placeholder="Ask me anything..."
                   onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   disabled={isLoading}
+                  autoFocus
                 />
                 <Button
                   id="chat-submit-btn"
