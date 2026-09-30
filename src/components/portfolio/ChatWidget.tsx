@@ -2,6 +2,7 @@ import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, User, Bot, Loader2 } from "lucide-react";
 import ReactMarkdown from "react-markdown";
+import remarkGfm from "remark-gfm";
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
@@ -191,11 +192,22 @@ const ChatWidget = () => {
                         ) : (
                           <ReactMarkdown
                             className="prose prose-invert prose-p:leading-relaxed prose-pre:p-0 max-w-none text-sm"
+                            remarkPlugins={[remarkGfm]}
                             components={{
                               p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
                               ul: ({ node, ...props }) => <ul className="mb-2 ml-4 list-disc last:mb-0" {...props} />,
                               ol: ({ node, ...props }) => <ol className="mb-2 ml-4 list-decimal last:mb-0" {...props} />,
                               li: ({ node, ...props }) => <li className="mb-1 last:mb-0" {...props} />,
+                              table: ({ node, ...props }) => (
+                                <div className="my-4 w-full overflow-x-auto rounded-lg border border-white/10">
+                                  <table className="w-full text-left text-sm" {...props} />
+                                </div>
+                              ),
+                              thead: ({ node, ...props }) => <thead className="bg-white/5 text-xs uppercase" {...props} />,
+                              tbody: ({ node, ...props }) => <tbody className="divide-y divide-white/10" {...props} />,
+                              tr: ({ node, ...props }) => <tr className="transition-colors hover:bg-white/5" {...props} />,
+                              th: ({ node, ...props }) => <th className="px-4 py-3 font-medium text-white" {...props} />,
+                              td: ({ node, ...props }) => <td className="px-4 py-3" {...props} />,
                             }}
                           >
                             {m.content}
