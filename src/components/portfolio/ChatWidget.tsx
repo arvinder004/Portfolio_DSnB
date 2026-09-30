@@ -1,5 +1,4 @@
 import { useState, useRef, useEffect } from "react";
-import { useChat } from "@ai-sdk/react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, User, Bot, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -11,37 +10,100 @@ const SUGGESTED_QUESTIONS = [
   "How can I get in touch with him?",
 ];
 
+export type Message = {
+  id: string;
+  role: "user" | "assistant";
+  content: string;
+};
+
 const ChatWidget = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { messages, input, handleInputChange, handleSubmit, isLoading, append } = useChat({
-    api: "/api/chat",
-  });
+  const [messages, setMessages] = useState<Message[]>([]);
+  const [input, setInput] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
+
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     if (messagesEndRef.current) {
       messagesEndRef.current.scrollIntoView({ behavior: "smooth" });
     }
-  }, [messages]);
+  }, [messages, isLoading]);
+
+  const sendMessage = async (content: string) => {
+    if (!content.trim() || isLoading) return;
+
+    const newMessages: Message[] = [
+      ...messages,
+      { id: Date.now().toString(), role: "user", content },
+    ];
+    setMessages(newMessages);
+    setInput("");
+    setIsLoading(true);
+
+    try {
+      const res = await fetch("/api/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ messages: newMessages }),
+      });
+
+      if (!res.ok) throw new Error("Failed to fetch response");
+      if (!res.body) throw new Error("No response body");
+
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder("utf-8");
+      let done = false;
+
+      // Add empty assistant message to append to
+      setMessages((prev) => [
+        ...prev,
+        { id: (Date.now() + 1).toString(), role: "assistant", content: "" },
+      ]);
+
+      while (!done) {
+        const { value, done: readerDone } = await reader.read();
+        done = readerDone;
+        if (value) {
+          const chunk = decoder.decode(value, { stream: true });
+          setMessages((prev) => {
+            const updated = [...prev];
+            const lastMessage = updated[updated.length - 1];
+            if (lastMessage.role === "assistant") {
+              lastMessage.content += chunk;
+            }
+            return updated;
+          });
+        }
+      }
+    } catch (error) {
+      console.error("Chat error:", error);
+      setMessages((prev) => [
+        ...prev,
+        {
+          id: Date.now().toString(),
+          role: "assistant",
+          content: "Sorry, I encountered an error. Please try again later.",
+        },
+      ]);
+    } finally {
+      setIsLoading(false);
+    }
+  };
 
   const handleSuggestedQuestion = (question: string) => {
-    handleInputChange({ target: { value: question } } as any);
-    setTimeout(() => {
-      document.getElementById("chat-submit-btn")?.click();
-    }, 50);
+    sendMessage(question);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!input?.trim()) return;
-    handleSubmit(e);
+    sendMessage(input);
   };
 
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
-      if (!input?.trim()) return;
-      e.currentTarget.form?.requestSubmit();
+      sendMessage(input);
     }
   };
 
@@ -128,7 +190,7 @@ const ChatWidget = () => {
                       </div>
                     </div>
                   ))}
-                  {isLoading && (
+                  {isLoading && messages[messages.length - 1]?.role !== "assistant" && (
                     <div className="flex gap-3">
                       <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-white/10 text-foreground">
                         <Bot className="h-4 w-4" />
@@ -153,7 +215,7 @@ const ChatWidget = () => {
                   className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
                   value={input}
                   placeholder="Ask me anything..."
-                  onChange={handleInputChange}
+                  onChange={(e) => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
                   disabled={isLoading}
                 />
