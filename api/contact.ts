@@ -1,3 +1,7 @@
+// Tell Vercel to run this function on the Node.js runtime (not Edge).
+// Required because we use process.env and the Resend fetch call.
+export const config = { runtime: "nodejs" };
+
 type ContactPayload = {
   name?: string;
   email?: string;
@@ -26,6 +30,8 @@ export default async function handler(request: Request) {
   const resendApiKey = process.env.RESEND_API_KEY;
   const toEmail = process.env.CONTACT_TO_EMAIL || "asdhoul004@gmail.com";
   const fromEmail = process.env.CONTACT_FROM_EMAIL;
+
+  console.log(`[contact] Env check — resendApiKey=${resendApiKey ? "set" : "MISSING"}, fromEmail=${fromEmail ?? "MISSING"}, toEmail=${toEmail}`);
 
   if (!resendApiKey || !fromEmail) {
     console.error("[contact] Missing env vars — RESEND_API_KEY or CONTACT_FROM_EMAIL not set");
@@ -57,6 +63,7 @@ export default async function handler(request: Request) {
     return json(400, { error: "All fields are required." });
   }
 
+  // Strip angle-bracket formatting if present e.g. "Name <email@x.com>" → use as-is, Resend accepts it
   console.log(`[contact] Sending email via Resend — from="${fromEmail}", to="${toEmail}", subject="Portfolio contact: ${subject}"`);
 
   try {
@@ -75,11 +82,13 @@ export default async function handler(request: Request) {
       }),
     });
 
+    const responseText = await resendResponse.text();
+    console.log(`[contact] Resend response — status=${resendResponse.status}, body=${responseText}`);
+
     if (!resendResponse.ok) {
-      const errorText = await resendResponse.text();
-      console.error(`[contact] Resend API error — status=${resendResponse.status}, body=${errorText}`);
+      console.error(`[contact] Resend API error — status=${resendResponse.status}, body=${responseText}`);
       return json(502, {
-        error: `Resend request failed: ${errorText || resendResponse.statusText}`,
+        error: `Resend request failed: ${responseText || resendResponse.statusText}`,
       });
     }
 
