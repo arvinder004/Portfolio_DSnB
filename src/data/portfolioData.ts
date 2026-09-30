@@ -8,7 +8,7 @@ export const meta = {
   name: "Arvinder Singh Dhoul",
   title: "AI Engineer & MSc AI/ML Student",
   tagline: "AI engineer building resilient LLM-powered products",
-  resumeUrl: "https://drive.google.com/file/d/19ryfKndqfSx0nNRMeVECkKJ-WB_7-Ik7/view", // Make sure this link points to your newest PDF!
+  resumeUrl: "/resume.pdf",
 };
 
 // ─── Social Links ────────────────────────────────────────────
