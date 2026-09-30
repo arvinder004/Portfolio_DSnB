@@ -8,6 +8,7 @@ import Contact from '@/components/portfolio/Contact';
 import Footer from '@/components/portfolio/Footer';
 import AnimatedBackground from '@/components/portfolio/AnimatedBackground';
 import SocialSidebar from '@/components/portfolio/SocialSidebar';
+import ChatWidget from '@/components/portfolio/ChatWidget';
 
 const Index = () => {
   return (
@@ -15,6 +16,7 @@ const Index = () => {
       <AnimatedBackground />
       <Navigation />
       <SocialSidebar />
+      <ChatWidget />
       
       <main className="relative z-10">
         <section id="hero">
