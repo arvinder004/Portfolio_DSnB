@@ -142,7 +142,7 @@ const ChatWidget = () => {
                 <Button
                   type="submit"
                   size="icon"
-                  disabled={isLoading || !input.trim()}
+                  disabled={isLoading || !input?.trim()}
                   className="h-8 w-8 shrink-0 rounded-lg bg-primary hover:bg-primary/90"
                 >
                   <Send className="h-4 w-4" />
