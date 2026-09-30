@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { Github, Linkedin, Mail, FileText, Instagram } from "lucide-react";
 import { socials, meta } from "@/data/portfolioData";
 
 const links = [
@@ -22,6 +22,11 @@ const links = [
     label: "Resume",
     href: meta.resumeUrl,
     icon: FileText,
+  },
+  {
+    label: "Instagram",
+    href: socials.instagram,
+    icon: Instagram,
   },
 ];
 

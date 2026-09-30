@@ -1,4 +1,4 @@
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { ArrowUpRight, Github, Linkedin, Mail, Instagram } from "lucide-react";
 
 import { meta, socials } from "@/data/portfolioData";
 
@@ -6,6 +6,7 @@ const links = [
   { label: "GitHub", href: socials.github, icon: Github },
   { label: "LinkedIn", href: socials.linkedin, icon: Linkedin },
   { label: "Email", href: `mailto:${socials.email}`, icon: Mail },
+  { label: "Instagram", href: socials.instagram, icon: Instagram },
 ];
 
 const Footer = () => {

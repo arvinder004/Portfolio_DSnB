@@ -1,5 +1,5 @@
 import { ChangeEvent, FormEvent, useState } from "react";
-import { Calendar, Github, Linkedin, Mail, MapPin, Phone, Send } from "lucide-react";
+import { Calendar, Github, Linkedin, Mail, MapPin, Phone, Send, Instagram } from "lucide-react";
 
 import { Button } from "../ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
@@ -43,6 +43,13 @@ const socialLinks = [
     href: socials.linkedin,
     description: "Professional background and recent work.",
     icon: Linkedin,
+  },
+  {
+    label: "Instagram",
+    value: `@${socials.instagram.split("/").pop()}`,
+    href: socials.instagram,
+    description: "AI, coding content, and behind-the-scenes.",
+    icon: Instagram,
   },
 ];
 

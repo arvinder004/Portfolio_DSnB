@@ -17,6 +17,7 @@ export const socials = {
   linkedin: "https://www.linkedin.com/in/arvinder004/",
   email: "asdhoul004@gmail.com",
   phone: "+353 89 256 2572",
+  instagram: "https://www.instagram.com/cyber_gabru",
 };
 
 // ─── Hero Section ────────────────────────────────────────────
