@@ -1,7 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText } from "ai";
 import { kv } from "@vercel/kv";
-import { meta, about, experiences, education, research, featuredProjects, skillCategories } from "../src/data/portfolioData.js";
+import { meta, about, experiences, education, research, featuredProjects, skillCategories, socials, contact } from "../src/data/portfolioData.js";
 
 export const config = {
   runtime: "edge",
@@ -57,6 +57,14 @@ ${featuredProjects.map((p) => `${p.title} (${p.category}): ${p.summary} Impact: 
 --- Education ---
 ${education.degree} at ${education.institution} (${education.period}).
 Note: ${education.note}
+
+--- Contact & Socials ---
+Email: ${socials.email}
+Phone: ${socials.phone}
+LinkedIn: ${socials.linkedin}
+GitHub: ${socials.github}
+Instagram: ${socials.instagram}
+Contact preferences: ${contact.fastestContact}
 
 --- GitHub Live Stats ---
 ${
