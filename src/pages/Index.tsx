@@ -7,12 +7,14 @@ import Experience from '@/components/portfolio/Experience';
 import Contact from '@/components/portfolio/Contact';
 import Footer from '@/components/portfolio/Footer';
 import AnimatedBackground from '@/components/portfolio/AnimatedBackground';
+import SocialSidebar from '@/components/portfolio/SocialSidebar';
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background text-foreground relative overflow-x-hidden">
       <AnimatedBackground />
       <Navigation />
+      <SocialSidebar />
       
       <main className="relative z-10">
         <section id="hero">
