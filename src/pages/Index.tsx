@@ -18,21 +18,23 @@ const Index = () => {
       <SocialSidebar />
       
       <main className="relative z-10">
-        <section id="chat-intro" className="relative flex min-h-[95vh] flex-col items-center justify-center px-4 pb-16 pt-32 sm:px-6 lg:px-8">
+        <section id="chat-intro" className="relative flex min-h-[100dvh] flex-col items-center justify-center px-4 py-16 sm:px-6 lg:px-8">
           <div className="absolute inset-0 hero-gradient" />
           
-          <div className="relative z-10 mx-auto w-full max-w-3xl text-center">
-            <div className="animate-fade-in-up">
+          <div className="relative z-10 mx-auto flex w-full max-w-3xl flex-col items-center justify-center pt-10">
+            <div className="animate-fade-in-up shrink-0 text-center">
               <span className="section-kicker">Interactive Experience</span>
-              <h1 className="mt-6 text-4xl font-bold leading-tight tracking-tight text-glow sm:text-5xl lg:text-6xl">
+              <h1 className="mt-4 text-3xl font-bold leading-tight tracking-tight text-glow sm:text-4xl md:text-5xl">
                 This is not a regular portfolio website.
               </h1>
-              <p className="mt-4 mb-10 text-lg text-muted-foreground sm:text-xl">
+              <p className="mt-3 mb-8 text-base text-muted-foreground sm:text-lg">
                 I'm an AI Engineer, so I built an AI to answer your questions. Talk to it below, or scroll down to browse normally.
               </p>
             </div>
             
-            <ChatWidget />
+            <div className="w-full flex-1">
+              <ChatWidget />
+            </div>
           </div>
         </section>
         <section id="hero">
