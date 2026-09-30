@@ -69,7 +69,7 @@ Answer the user's questions clearly, and keep responses relatively brief (1-3 pa
 
     // Stream the response using the Vercel AI SDK
     const result = await streamText({
-      model: groq("llama-3.1-8b-instant"), // Using Groq's fast Llama 3.1 model
+      model: groq("openai/gpt-oss-120b"), // Using available GPT-OSS 120B model from Groq
       system: systemPrompt,
       messages: messages.map((m: any) => ({ role: m.role, content: m.content })),
     });
