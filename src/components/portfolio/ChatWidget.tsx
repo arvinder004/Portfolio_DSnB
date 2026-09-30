@@ -17,7 +17,6 @@ export type Message = {
 };
 
 const ChatWidget = () => {
-  const [isOpen, setIsOpen] = useState(false);
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -108,31 +107,15 @@ const ChatWidget = () => {
   };
 
   return (
-    <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end">
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            initial={{ opacity: 0, y: 20, scale: 0.95 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 20, scale: 0.95 }}
-            transition={{ duration: 0.2 }}
-            className="mb-4 flex h-[500px] w-[350px] flex-col overflow-hidden rounded-2xl border border-white/10 bg-background/80 shadow-2xl backdrop-blur-xl sm:w-[400px]"
-          >
-            {/* Header */}
-            <div className="flex items-center justify-between border-b border-white/10 bg-white/5 px-4 py-3">
-              <div className="flex items-center gap-2">
-                <Bot className="h-5 w-5 text-primary" />
-                <span className="font-medium text-foreground">Arvinder's AI</span>
-              </div>
-              <Button
-                variant="ghost"
-                size="icon"
-                className="h-8 w-8 rounded-full hover:bg-white/10"
-                onClick={() => setIsOpen(false)}
-              >
-                <X className="h-4 w-4" />
-              </Button>
-            </div>
+    <div className="mx-auto w-full max-w-3xl animate-fade-in-up">
+      <div className="flex h-[550px] w-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-background/40 shadow-2xl backdrop-blur-xl">
+        {/* Header */}
+        <div className="flex items-center justify-center border-b border-white/10 bg-white/5 px-4 py-4">
+          <div className="flex items-center gap-2">
+            <Bot className="h-5 w-5 text-primary" />
+            <span className="font-medium text-foreground tracking-wide">Ask Arvinder's AI</span>
+          </div>
+        </div>
 
             {/* Messages Area */}
             <div className="flex-1 overflow-y-auto p-4 scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/10">
@@ -230,26 +213,8 @@ const ChatWidget = () => {
                 </Button>
               </form>
             </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Floating Action Button */}
-      <AnimatePresence>
-        {!isOpen && (
-          <motion.button
-            initial={{ scale: 0 }}
-            animate={{ scale: 1 }}
-            exit={{ scale: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            onClick={() => setIsOpen(true)}
-            className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-xl transition-shadow hover:shadow-primary/25"
-          >
-            <MessageCircle className="h-6 w-6" />
-          </motion.button>
-        )}
-      </AnimatePresence>
+          </div>
+        </div>
     </div>
   );
 };
