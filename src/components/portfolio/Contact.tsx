@@ -6,23 +6,24 @@ import { Card, CardContent, CardHeader, CardTitle } from "../ui/card";
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Textarea } from "../ui/textarea";
+import { contact, socials } from "@/data/portfolioData";
 
 const contactDetails = [
   {
     label: "Email",
-    value: "asdhoul004@gmail.com",
-    href: "mailto:asdhoul004@gmail.com",
+    value: socials.email,
+    href: `mailto:${socials.email}`,
     icon: Mail,
   },
   {
     label: "Phone",
-    value: "+91 8435967741",
-    href: "tel:+918435967741",
+    value: socials.phone,
+    href: `tel:${socials.phone.replace(/\s/g, "")}`,
     icon: Phone,
   },
   {
     label: "Location",
-    value: "Jabalpur, India",
+    value: contact.location,
     href: undefined,
     icon: MapPin,
   },
@@ -31,15 +32,15 @@ const contactDetails = [
 const socialLinks = [
   {
     label: "GitHub",
-    value: "@arvinder004",
-    href: "https://github.com/arvinder004",
+    value: `@${socials.github.split("/").pop()}`,
+    href: socials.github,
     description: "Code, experiments, and shipped side projects.",
     icon: Github,
   },
   {
     label: "LinkedIn",
     value: "Arvinder Singh Dhoul",
-    href: "https://www.linkedin.com/in/arvinder004/",
+    href: socials.linkedin,
     description: "Professional background and recent work.",
     icon: Linkedin,
   },
@@ -116,11 +117,9 @@ const Contact = () => {
         <div className="section-panel">
           <div className="max-w-3xl animate-fade-in-up">
             <span className="section-kicker">Contact</span>
-            <h2 className="mt-6 text-4xl font-bold sm:text-5xl">Let’s build something useful together.</h2>
+            <h2 className="mt-6 text-4xl font-bold sm:text-5xl">{contact.headline}</h2>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              I’m especially interested in AI engineering, LLM applications, RAG systems, and
-              full-stack product work. I’m open to internships, freelance builds, and thoughtful
-              collaborations.
+              {contact.subheadline}
             </p>
           </div>
 
@@ -270,8 +269,7 @@ const Contact = () => {
                   <div>
                     <p className="font-medium">Fastest way to reach me</p>
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      Email works best for internship opportunities, freelance discussions, and AI
-                      product collaborations.
+                      {contact.fastestContact}
                     </p>
                   </div>
                 </CardContent>

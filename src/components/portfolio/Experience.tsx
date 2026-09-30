@@ -1,40 +1,6 @@
 import { BookOpen, BriefcaseBusiness, MapPin } from "lucide-react";
 
-const experiences = [
-  {
-    company: "Compucom CSI Systems",
-    role: "AI Engineer Intern",
-    period: "Feb 2026 - May 2026",
-    location: "Pune, India",
-    points: [
-      "Designed scalable Retrieval-Augmented Generation pipelines using LangChain and vector databases.",
-      "Built full-stack AI applications with Next.js frontends and Node.js microservices.",
-      "Optimized prompting and grounding strategies to improve response reliability and reduce hallucinations.",
-    ],
-  },
-  {
-    company: "RIU Global",
-    role: "Freelance Web Developer",
-    period: "Nov 2025 - Jan 2026",
-    location: "Remote",
-    points: [
-      "Developed and deployed a production-ready multi-page marketing website for an international telecom training provider.",
-      "Implemented an admin dashboard for course management, content updates, and customizable program listings.",
-      "Handled domain deployment and hosting for the live platform, with attention to scalability and performance.",
-    ],
-  },
-];
-
-const research = [
-  "Performance Evaluation and Comparison of YOLOv8, MobileNet-SSD, and MTCNN for Face Detection in Smart Attendance System",
-  "Generative AI-Powered COBOTs for Human-Centric Collaboration and Co-Evolution",
-];
-
-const achievements = [
-  "GATE 2025 qualified in Computer Science and IT",
-  "NPTEL Elite certified in DBMS and Ethical Hacking",
-  "Finalist in Smart India Hackathon 2023 and Solve to Evolve Hackathon at IIT Madras",
-];
+import { achievements, education, experiences, research } from "@/data/portfolioData";
 
 const Experience = () => {
   return (
@@ -84,9 +50,10 @@ const Experience = () => {
                   </div>
                   <div>
                     <p className="text-sm uppercase tracking-[0.22em] text-accent">Education</p>
-                    <h3 className="mt-2 text-2xl font-semibold">B.Tech. Computer Science and Business Systems</h3>
-                    <p className="mt-1 text-sm text-foreground/90">Gyan Ganga Institute of Technology & Sciences</p>
-                    <p className="mt-2 text-sm text-muted-foreground">Oct 2022 - May 2026 · Jabalpur, India · CGPA: 8.24</p>
+                    <h3 className="mt-2 text-2xl font-semibold">{education.degree}</h3>
+                    <p className="mt-1 text-sm text-foreground/90">{education.institution}</p>
+                    <p className="mt-2 text-sm text-muted-foreground">{education.period}</p>
+                    <p className="mt-2 text-xs text-muted-foreground/70">{education.note}</p>
                   </div>
                 </div>
               </article>
@@ -95,9 +62,17 @@ const Experience = () => {
                 <p className="text-sm uppercase tracking-[0.22em] text-accent">Research</p>
                 <ul className="mt-5 space-y-4 text-sm leading-7 text-muted-foreground">
                   {research.map((item) => (
-                    <li key={item} className="flex items-start gap-3">
-                      <span className="mt-2 h-1.5 w-1.5 rounded-full bg-primary" />
-                      <span>{item}</span>
+                    <li key={item.title} className="flex items-start gap-3">
+                      <span className="mt-2 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
+                      <span>
+                        <span className="mr-2 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-xs text-primary">
+                          {item.status}
+                        </span>
+                        {item.title}
+                        {item.venue ? (
+                          <span className="ml-1 text-xs text-muted-foreground/60">— {item.venue}</span>
+                        ) : null}
+                      </span>
                     </li>
                   ))}
                 </ul>

@@ -1,9 +1,11 @@
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 
+import { meta, socials } from "@/data/portfolioData";
+
 const links = [
-  { label: "GitHub", href: "https://github.com/arvinder004", icon: Github },
-  { label: "LinkedIn", href: "https://www.linkedin.com/in/arvinder004/", icon: Linkedin },
-  { label: "Email", href: "mailto:asdhoul004@gmail.com", icon: Mail },
+  { label: "GitHub", href: socials.github, icon: Github },
+  { label: "LinkedIn", href: socials.linkedin, icon: Linkedin },
+  { label: "Email", href: `mailto:${socials.email}`, icon: Mail },
 ];
 
 const Footer = () => {
@@ -11,7 +13,7 @@ const Footer = () => {
     <footer className="px-4 pb-10 pt-4 sm:px-6">
       <div className="mx-auto flex max-w-6xl flex-col gap-5 rounded-[2rem] border border-white/10 bg-white/[0.03] px-6 py-8 sm:flex-row sm:items-end sm:justify-between">
         <div>
-          <p className="font-semibold text-foreground">Arvinder Singh Dhoul</p>
+          <p className="font-semibold text-foreground">{meta.name}</p>
           <p className="mt-2 max-w-xl text-sm leading-6 text-muted-foreground">
             AI engineer and full-stack builder focused on LLM systems, product delivery, and
             dependable backend workflows.

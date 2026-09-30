@@ -1,73 +1,10 @@
 import { Bot, Brain, ExternalLink, Github, Layers3, Server, Sparkles } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { archiveProjects, featuredProjects } from "@/data/portfolioData";
 
-type Project = {
-  title: string;
-  summary: string;
-  category: string;
-  impact: string;
-  stack: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  icon: typeof Brain;
-};
-
-const featuredProjects: Project[] = [
-  {
-    title: "Autonomous Recruitment Assistant",
-    summary:
-      "An automated multi-stage technical interview assistant that uses LLM evaluation pipelines to guide candidate screening.",
-    category: "Agentic AI",
-    impact: "Introduced structured candidate scoring, persistent progress tracking, HR-ready exports, and real-time session monitoring.",
-    stack: ["LangChain", "Streamlit", "MongoDB", "LLM evaluation"],
-    icon: Bot,
-  },
-  {
-    title: "Multi-Agent Content Generation System",
-    summary:
-      "A LangGraph workflow that transforms raw product data into validated structured JSON pages through coordinated agents.",
-    category: "Multi-agent workflow",
-    impact: "Reduced malformed LLM outputs by 90% using typed validation with Pydantic plus structured logging and node-level monitoring.",
-    stack: ["LangGraph", "Pydantic", "AsyncIO", "Structured logging"],
-    icon: Layers3,
-  },
-  {
-    title: "Customer Retention & Churn Risk Dashboard",
-    summary:
-      "A full-stack decision-support experience that turns churn predictions into retention actions and CLV-oriented recommendations.",
-    category: "Data product",
-    impact: "Combined XGBoost modeling, business simulation, and a lightweight app layer for actionable customer strategy.",
-    stack: ["Python", "XGBoost", "FastAPI", "Streamlit"],
-    githubUrl: "https://github.com/arvinder004/Customer-Retention-Churn-Risk-Dashboard",
-    liveUrl: "https://customer-retention-churn-risk-dashboard.streamlit.app/",
-    icon: Brain,
-  },
-  {
-    title: "Simple Task Management System",
-    summary:
-      "A secure MERN application with role-aware dashboards and authentication flows designed around backend discipline.",
-    category: "Full stack",
-    impact: "Highlights practical API design, JWT-based access control, and product-minded CRUD architecture.",
-    stack: ["React", "Node.js", "Express", "MongoDB", "JWT"],
-    githubUrl: "https://github.com/arvinder004/Simple-Task-Managment-System",
-    liveUrl: "https://simple-task-mgmt.netlify.app/",
-    icon: Server,
-  },
-];
-
-const archiveProjects = [
-  "Student Exam Performance Predictor",
-  "Telecom Customer Churn Prediction Model",
-  "Smart Resume Analyzer",
-  "Face Recognition Attendance System",
-  "Multilingual Video Dubbing Tool",
-  "Cue Sports Scorekeeper",
-  "BlackBoard Tool",
-  "Define-It",
-  "Weather App",
-  "Arduino-Based Solar Tracking System",
-];
+const iconMap = { Bot, Brain, Layers3, Server } as const;
+type IconKey = keyof typeof iconMap;
 
 const Projects = () => {
   return (
@@ -91,66 +28,69 @@ const Projects = () => {
         </div>
 
         <div className="mt-12 grid gap-6">
-          {featuredProjects.map(({ title, summary, category, impact, stack, githubUrl, liveUrl, icon: Icon }, index) => (
-            <article
-              key={title}
-              className="glass-card grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] animate-fade-in-up"
-              style={{ animationDelay: `${index * 0.08}s` }}
-            >
-              <div className="flex flex-col justify-between gap-5">
-                <div>
-                  <div className="inline-flex rounded-2xl border border-primary/20 bg-primary/10 p-3 text-primary">
-                    <Icon className="h-5 w-5" />
-                  </div>
-                  <p className="mt-5 text-sm uppercase tracking-[0.22em] text-accent">{category}</p>
-                  <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">{title}</h3>
-                </div>
-
-                <div className="flex flex-wrap gap-2">
-                  {stack.map((item) => (
-                    <span
-                      key={item}
-                      className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground/90"
-                    >
-                      {item}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="flex flex-col justify-between gap-6">
-                <div>
-                  <p className="text-base leading-8 text-muted-foreground">{summary}</p>
-                  <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-background/50 p-5">
-                    <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
-                      <Sparkles className="h-4 w-4" />
-                      What stands out
+          {featuredProjects.map(({ title, summary, category, impact, stack, githubUrl, liveUrl, iconKey }, index) => {
+            const Icon = iconMap[iconKey as IconKey] ?? Bot;
+            return (
+              <article
+                key={title}
+                className="glass-card grid gap-6 p-6 sm:p-8 lg:grid-cols-[0.8fr_1.2fr] animate-fade-in-up"
+                style={{ animationDelay: `${index * 0.08}s` }}
+              >
+                <div className="flex flex-col justify-between gap-5">
+                  <div>
+                    <div className="inline-flex rounded-2xl border border-primary/20 bg-primary/10 p-3 text-primary">
+                      <Icon className="h-5 w-5" />
                     </div>
-                    <p className="mt-3 text-sm leading-7 text-muted-foreground">{impact}</p>
+                    <p className="mt-5 text-sm uppercase tracking-[0.22em] text-accent">{category}</p>
+                    <h3 className="mt-3 text-2xl font-semibold sm:text-3xl">{title}</h3>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    {stack.map((item) => (
+                      <span
+                        key={item}
+                        className="rounded-full border border-white/10 bg-white/5 px-3 py-2 text-sm text-foreground/90"
+                      >
+                        {item}
+                      </span>
+                    ))}
                   </div>
                 </div>
 
-                <div className="flex flex-wrap gap-3">
-                  {githubUrl ? (
-                    <Button variant="outline" className="border-white/15 bg-white/5" asChild>
-                      <a href={githubUrl} target="_blank" rel="noopener noreferrer">
-                        <Github className="h-4 w-4" />
-                        Source
-                      </a>
-                    </Button>
-                  ) : null}
-                  {liveUrl ? (
-                    <Button variant="hero" asChild>
-                      <a href={liveUrl} target="_blank" rel="noopener noreferrer">
-                        <ExternalLink className="h-4 w-4" />
-                        Live demo
-                      </a>
-                    </Button>
-                  ) : null}
+                <div className="flex flex-col justify-between gap-6">
+                  <div>
+                    <p className="text-base leading-8 text-muted-foreground">{summary}</p>
+                    <div className="mt-6 rounded-[1.25rem] border border-white/10 bg-background/50 p-5">
+                      <div className="flex items-center gap-3 text-sm font-semibold uppercase tracking-[0.18em] text-primary">
+                        <Sparkles className="h-4 w-4" />
+                        What stands out
+                      </div>
+                      <p className="mt-3 text-sm leading-7 text-muted-foreground">{impact}</p>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-wrap gap-3">
+                    {githubUrl ? (
+                      <Button variant="outline" className="border-white/15 bg-white/5" asChild>
+                        <a href={githubUrl} target="_blank" rel="noopener noreferrer">
+                          <Github className="h-4 w-4" />
+                          Source
+                        </a>
+                      </Button>
+                    ) : null}
+                    {liveUrl ? (
+                      <Button variant="hero" asChild>
+                        <a href={liveUrl} target="_blank" rel="noopener noreferrer">
+                          <ExternalLink className="h-4 w-4" />
+                          Live demo
+                        </a>
+                      </Button>
+                    ) : null}
+                  </div>
                 </div>
-              </div>
-            </article>
-          ))}
+              </article>
+            );
+          })}
         </div>
 
         <div className="mt-12 rounded-[2rem] border border-white/10 bg-white/[0.03] p-6 sm:p-8">

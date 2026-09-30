@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Download, Menu, X } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { meta } from "@/data/portfolioData";
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -68,7 +69,7 @@ const Navigation = () => {
           <div className="hidden md:block">
             <Button variant="outline" size="sm" className="border-white/10 bg-white/5" asChild>
               <a
-                href="https://drive.google.com/file/d/19ryfKndqfSx0nNRMeVECkKJ-WB_7-Ik7/view"
+                href={meta.resumeUrl}
                 target="_blank"
                 rel="noopener noreferrer"
               >
@@ -105,7 +106,7 @@ const Navigation = () => {
               ))}
               <Button variant="outline" className="mt-2 w-full border-white/10 bg-white/5" asChild>
                 <a
-                  href="https://drive.google.com/file/d/19ryfKndqfSx0nNRMeVECkKJ-WB_7-Ik7/view"
+                  href={meta.resumeUrl}
                   target="_blank"
                   rel="noopener noreferrer"
                 >
