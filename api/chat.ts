@@ -1,7 +1,7 @@
 import { createOpenAI } from "@ai-sdk/openai";
-import { streamText, convertToCoreMessages } from "ai";
+import { streamText } from "ai";
 import { kv } from "@vercel/kv";
-import { meta, about, experiences, education, research, featuredProjects, skillCategories } from "../src/data/portfolioData";
+import { meta, about, experiences, education, research, featuredProjects, skillCategories } from "../src/data/portfolioData.js";
 
 export const config = {
   runtime: "edge",
@@ -55,8 +55,8 @@ ${experiences.map((e) => `${e.role} at ${e.company} (${e.period}). \nHighlights:
 ${featuredProjects.map((p) => `${p.title} (${p.category}): ${p.summary} Impact: ${p.impact}. Tech Stack: ${p.stack.join(", ")}`).join("\n\n")}
 
 --- Education ---
-${education.degree} at ${education.school} (${education.period}).
-Relevant Coursework: ${education.coursework.join(", ")}
+${education.degree} at ${education.institution} (${education.period}).
+Note: ${education.note}
 
 --- GitHub Live Stats ---
 ${
@@ -71,10 +71,10 @@ Answer the user's questions clearly, and keep responses relatively brief (1-3 pa
     const result = await streamText({
       model: groq("llama3-8b-8192"), // Using Groq's fast Llama 3 model
       system: systemPrompt,
-      messages: convertToCoreMessages(messages),
+      messages: messages.map((m: any) => ({ role: m.role, content: m.content })),
     });
 
-    return result.toDataStreamResponse();
+    return result.toTextStreamResponse();
   } catch (error: any) {
     console.error("[chat api] Error:", error);
     return new Response(JSON.stringify({ error: error.message }), {
