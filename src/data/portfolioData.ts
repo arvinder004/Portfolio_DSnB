@@ -198,17 +198,22 @@ export const featuredProjects: Project[] = [
   },
 ];
 
-export const archiveProjects = [
-  "Student Exam Performance Predictor",
-  "Telecom Customer Churn Prediction Model",
-  "Smart Resume Analyzer",
-  "Face Recognition Attendance System",
-  "Multilingual Video Dubbing Tool",
-  "Cue Sports Scorekeeper",
-  "BlackBoard Tool",
-  "Define-It",
-  "Weather App",
-  "Arduino-Based Solar Tracking System",
+export type ArchiveProject = {
+  title: string;
+  githubUrl: string;
+};
+
+export const archiveProjects: ArchiveProject[] = [
+  { title: "Student Exam Performance Predictor",      githubUrl: "https://github.com/arvinder004" },
+  { title: "Telecom Customer Churn Prediction Model", githubUrl: "https://github.com/arvinder004" },
+  { title: "Smart Resume Analyzer",                   githubUrl: "https://github.com/arvinder004" },
+  { title: "Face Recognition Attendance System",      githubUrl: "https://github.com/arvinder004" },
+  { title: "Multilingual Video Dubbing Tool",         githubUrl: "https://github.com/arvinder004" },
+  { title: "Cue Sports Scorekeeper",                  githubUrl: "https://github.com/arvinder004" },
+  { title: "BlackBoard Tool",                         githubUrl: "https://github.com/arvinder004" },
+  { title: "Define-It",                               githubUrl: "https://github.com/arvinder004" },
+  { title: "Weather App",                             githubUrl: "https://github.com/arvinder004" },
+  { title: "Arduino-Based Solar Tracking System",     githubUrl: "https://github.com/arvinder004" },
 ];
 
 // ─── Skills Section ──────────────────────────────────────────

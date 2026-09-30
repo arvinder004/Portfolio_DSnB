@@ -97,12 +97,16 @@ const Projects = () => {
           <p className="eyebrow-line">Project archive</p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
             {archiveProjects.map((project) => (
-              <div
-                key={project}
-                className="rounded-2xl border border-white/10 bg-background/40 px-4 py-4 text-sm text-muted-foreground transition hover:border-primary/30 hover:text-foreground"
+              <a
+                key={project.title}
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between rounded-2xl border border-white/10 bg-background/40 px-4 py-4 text-sm text-muted-foreground transition hover:border-primary/30 hover:bg-primary/5 hover:text-foreground"
               >
-                {project}
-              </div>
+                <span>{project.title}</span>
+                <Github className="h-3.5 w-3.5 flex-shrink-0 opacity-40 transition group-hover:opacity-100 group-hover:text-primary" />
+              </a>
             ))}
           </div>
         </div>
