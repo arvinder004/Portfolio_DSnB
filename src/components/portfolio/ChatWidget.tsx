@@ -25,7 +25,10 @@ const ChatWidget = () => {
   }, [messages]);
 
   const handleSuggestedQuestion = (question: string) => {
-    append({ role: "user", content: question });
+    handleInputChange({ target: { value: question } } as any);
+    setTimeout(() => {
+      document.getElementById("chat-submit-btn")?.click();
+    }, 50);
   };
 
   const onSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -38,9 +41,7 @@ const ChatWidget = () => {
     if (e.key === "Enter" && !e.shiftKey) {
       e.preventDefault();
       if (!input?.trim()) return;
-      // create a mock event for handleSubmit
-      const mockEvent = { preventDefault: () => {} } as React.FormEvent<HTMLFormElement>;
-      handleSubmit(mockEvent);
+      e.currentTarget.form?.requestSubmit();
     }
   };
 
@@ -157,6 +158,7 @@ const ChatWidget = () => {
                   disabled={isLoading}
                 />
                 <Button
+                  id="chat-submit-btn"
                   type="submit"
                   size="icon"
                   disabled={isLoading || !input?.trim()}
