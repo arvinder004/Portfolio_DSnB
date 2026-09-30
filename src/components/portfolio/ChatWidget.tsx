@@ -1,6 +1,7 @@
 import { useState, useRef, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MessageCircle, X, Send, User, Bot, Loader2 } from "lucide-react";
+import ReactMarkdown from "react-markdown";
 import { Button } from "@/components/ui/button";
 
 const SUGGESTED_QUESTIONS = [
@@ -179,13 +180,27 @@ const ChatWidget = () => {
                         )}
                       </div>
                       <div
-                        className={`max-w-[80%] rounded-2xl px-4 py-2 text-sm ${
+                        className={`max-w-[85%] rounded-2xl px-4 py-2 text-sm text-left ${
                           m.role === "user"
                             ? "bg-primary text-primary-foreground"
                             : "bg-white/5 text-foreground"
                         }`}
                       >
-                        {m.content}
+                        {m.role === "user" ? (
+                          m.content
+                        ) : (
+                          <ReactMarkdown
+                            className="prose prose-invert prose-p:leading-relaxed prose-pre:p-0 max-w-none text-sm"
+                            components={{
+                              p: ({ node, ...props }) => <p className="mb-2 last:mb-0" {...props} />,
+                              ul: ({ node, ...props }) => <ul className="mb-2 ml-4 list-disc last:mb-0" {...props} />,
+                              ol: ({ node, ...props }) => <ol className="mb-2 ml-4 list-decimal last:mb-0" {...props} />,
+                              li: ({ node, ...props }) => <li className="mb-1 last:mb-0" {...props} />,
+                            }}
+                          >
+                            {m.content}
+                          </ReactMarkdown>
+                        )}
                       </div>
                     </div>
                   ))}
