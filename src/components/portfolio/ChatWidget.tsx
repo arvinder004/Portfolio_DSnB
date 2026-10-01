@@ -255,7 +255,7 @@ const ChatWidget = () => {
               >
                 <input
                   ref={inputRef}
-                  className="flex-1 bg-transparent px-3 py-2 text-sm text-foreground outline-none placeholder:text-muted-foreground"
+                  className="flex-1 bg-transparent px-3 py-2 text-base sm:text-sm text-foreground outline-none placeholder:text-muted-foreground"
                   value={input}
                   placeholder="Ask me anything..."
                   onChange={(e) => setInput(e.target.value)}
