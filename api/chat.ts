@@ -14,10 +14,7 @@ const getRedisClient = async () => {
 
 
 
-export default async function handler(req: Request) {
-  if (req.method !== "POST") {
-    return new Response("Method Not Allowed", { status: 405 });
-  }
+export async function POST(req: Request) {
 
   try {
     const { messages } = await req.json();
