@@ -1,7 +1,12 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText } from "ai";
-import { kv } from "@vercel/kv";
+import { createClient } from "@vercel/kv";
 import { meta, about, experiences, education, research, featuredProjects, skillCategories, socials, contact } from "../src/data/portfolioData.js";
+
+const kv = createClient({
+  url: process.env.KV_REST_API_URL || process.env.KV_REDIS_REST_URL || "",
+  token: process.env.KV_REST_API_TOKEN || process.env.KV_REDIS_REST_TOKEN || "",
+});
 
 export const config = {
   runtime: "edge",

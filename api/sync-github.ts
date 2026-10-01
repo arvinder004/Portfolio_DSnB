@@ -1,5 +1,10 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { kv } from "@vercel/kv";
+import { createClient } from "@vercel/kv";
+
+const kv = createClient({
+  url: process.env.KV_REST_API_URL || process.env.KV_REDIS_REST_URL || "",
+  token: process.env.KV_REST_API_TOKEN || process.env.KV_REDIS_REST_TOKEN || "",
+});
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Optional security: Verify a secret token to prevent unauthorized triggers
