@@ -9,6 +9,7 @@ const SUGGESTED_QUESTIONS = [
   "What is Arvinder's core tech stack?",
   "Tell me about his experience at Compucom.",
   "Can you summarize his recent projects?",
+  "What are his most popular GitHub repos?",
   "How can I get in touch with him?",
 ];
 
