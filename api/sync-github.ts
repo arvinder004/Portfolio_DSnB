@@ -1,10 +1,28 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
 import { createClient } from "@vercel/kv";
 
-const kv = createClient({
-  url: process.env.KV_REST_API_URL || process.env.KV_REDIS_REST_URL || "",
-  token: process.env.KV_REST_API_TOKEN || process.env.KV_REDIS_REST_TOKEN || "",
-});
+const getKvClient = () => {
+  let restUrl = process.env.KV_REST_API_URL || process.env.KV_REDIS_REST_URL || "";
+  let restToken = process.env.KV_REST_API_TOKEN || process.env.KV_REDIS_REST_TOKEN || "";
+
+  const rawUrl = process.env.KV_REDIS_URL || "";
+  if (!restUrl && rawUrl) {
+    try {
+      const urlObj = new URL(rawUrl);
+      restUrl = `https://${urlObj.hostname}`;
+      restToken = urlObj.password;
+    } catch (e) {
+      console.error("Failed to parse KV_REDIS_URL", e);
+    }
+  }
+
+  return createClient({
+    url: restUrl,
+    token: restToken,
+  });
+};
+
+const kv = getKvClient();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Optional security: Verify a secret token to prevent unauthorized triggers
