@@ -1,34 +1,18 @@
 import { createOpenAI } from "@ai-sdk/openai";
 import { streamText } from "ai";
-import { createClient } from "@vercel/kv";
+import { createClient } from "redis";
 import { meta, about, experiences, education, research, featuredProjects, skillCategories, socials, contact } from "../src/data/portfolioData.js";
 
-const getKvClient = () => {
-  let restUrl = process.env.KV_REST_API_URL || process.env.KV_REDIS_REST_URL || "";
-  let restToken = process.env.KV_REST_API_TOKEN || process.env.KV_REDIS_REST_TOKEN || "";
-
-  const rawUrl = process.env.KV_REDIS_URL || "";
-  if (!restUrl && rawUrl) {
-    try {
-      const urlObj = new URL(rawUrl);
-      restUrl = `https://${urlObj.hostname}`;
-      restToken = urlObj.password;
-    } catch (e) {
-      console.error("Failed to parse KV_REDIS_URL", e);
-    }
-  }
-
-  return createClient({
-    url: restUrl,
-    token: restToken,
-  });
+const getRedisClient = async () => {
+  const url = process.env.KV_REDIS_URL || "";
+  if (!url) return null;
+  const client = createClient({ url });
+  client.on('error', (err) => console.error('Redis Client Error', err));
+  await client.connect();
+  return client;
 };
 
-const kv = getKvClient();
 
-export const config = {
-  runtime: "edge",
-};
 
 export default async function handler(req: Request) {
   if (req.method !== "POST") {
@@ -44,14 +28,19 @@ export default async function handler(req: Request) {
       apiKey: process.env.GROQ_API_KEY,
     });
 
-    // Attempt to fetch live GitHub stats from KV
+    // Attempt to fetch live GitHub stats from Redis
     let githubStats = null;
+    let redisClient = null;
     try {
-      if (process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN) {
-        githubStats = await kv.get("github_stats");
+      redisClient = await getRedisClient();
+      if (redisClient) {
+        const data = await redisClient.get("github_stats");
+        if (data) githubStats = JSON.parse(data);
       }
     } catch (e) {
-      console.warn("Could not fetch Github stats from KV:", e);
+      console.warn("Could not fetch Github stats from Redis:", e);
+    } finally {
+      if (redisClient) await redisClient.disconnect();
     }
 
     const systemPrompt = `You are Arvinder Singh Dhoul's AI assistant, embedded in his portfolio website.
@@ -96,7 +85,7 @@ If a user asks about Arvinder's recent posts, activity, or updates on LinkedIn, 
 --- GitHub Live Stats ---
 ${
   githubStats
-    ? `Arvinder currently has ${(githubStats as any).publicRepos} public repositories and ${(githubStats as any).totalStars} total stars. Top repos include: ${(githubStats as any).topRepos.map((r: any) => r.name).join(", ")}.`
+    ? `Arvinder currently has ${(githubStats as Record<string, unknown>).publicRepos} public repositories and ${(githubStats as Record<string, unknown>).totalStars} total stars. Top repos include: ${((githubStats as Record<string, unknown>).topRepos as Array<Record<string, unknown>>).map(r => r.name).join(", ")}.`
     : "GitHub stats not currently loaded."
 }
 
@@ -106,13 +95,13 @@ Answer the user's questions clearly, and keep responses relatively brief (1-3 pa
     const result = await streamText({
       model: groq("openai/gpt-oss-120b"), // Using available GPT-OSS 120B model from Groq
       system: systemPrompt,
-      messages: messages.map((m: any) => ({ role: m.role, content: m.content })),
+      messages: messages.map((m: Record<string, unknown>) => ({ role: m.role, content: m.content })),
     });
 
     return result.toTextStreamResponse();
-  } catch (error: any) {
+  } catch (error: unknown) {
     console.error("[chat api] Error:", error);
-    return new Response(JSON.stringify({ error: error.message }), {
+    return new Response(JSON.stringify({ error: error instanceof Error ? error.message : "Unknown error" }), {
       status: 500,
       headers: { "Content-Type": "application/json" },
     });

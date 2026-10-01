@@ -1,28 +1,14 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { createClient } from "@vercel/kv";
+import { createClient } from "redis";
 
-const getKvClient = () => {
-  let restUrl = process.env.KV_REST_API_URL || process.env.KV_REDIS_REST_URL || "";
-  let restToken = process.env.KV_REST_API_TOKEN || process.env.KV_REDIS_REST_TOKEN || "";
-
-  const rawUrl = process.env.KV_REDIS_URL || "";
-  if (!restUrl && rawUrl) {
-    try {
-      const urlObj = new URL(rawUrl);
-      restUrl = `https://${urlObj.hostname}`;
-      restToken = urlObj.password;
-    } catch (e) {
-      console.error("Failed to parse KV_REDIS_URL", e);
-    }
-  }
-
-  return createClient({
-    url: restUrl,
-    token: restToken,
-  });
+const getRedisClient = async () => {
+  const url = process.env.KV_REDIS_URL || "";
+  if (!url) return null;
+  const client = createClient({ url });
+  client.on('error', (err) => console.error('Redis Client Error', err));
+  await client.connect();
+  return client;
 };
-
-const kv = getKvClient();
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   // Optional security: Verify a secret token to prevent unauthorized triggers
@@ -56,12 +42,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const repos = await reposRes.json();
 
     const publicReposCount = profile.public_repos;
-    const totalStars = repos.reduce((acc: number, repo: any) => acc + repo.stargazers_count, 0);
+    const totalStars = repos.reduce((acc: number, repo: Record<string, unknown>) => acc + (repo.stargazers_count as number), 0);
     const topRepos = repos
-      .filter((r: any) => !r.fork)
-      .sort((a: any, b: any) => b.stargazers_count - a.stargazers_count)
+      .filter((r: Record<string, unknown>) => !r.fork)
+      .sort((a: Record<string, unknown>, b: Record<string, unknown>) => (b.stargazers_count as number) - (a.stargazers_count as number))
       .slice(0, 5)
-      .map((r: any) => ({
+      .map((r: Record<string, unknown>) => ({
         name: r.name,
         stars: r.stargazers_count,
         description: r.description,
@@ -78,7 +64,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     };
 
     // Store in Redis
-    await kv.set("github_stats", stats);
+    let redisClient = null;
+    try {
+      redisClient = await getRedisClient();
+      if (redisClient) {
+        await redisClient.set("github_stats", JSON.stringify(stats));
+      } else {
+        console.warn("No KV_REDIS_URL found, skipping Redis write.");
+      }
+    } finally {
+      if (redisClient) await redisClient.disconnect();
+    }
 
     console.log("[github-sync] Successfully updated Github stats in Redis.");
     return res.status(200).json({ success: true, stats });
