@@ -33,6 +33,13 @@ const ChatWidget = () => {
     return () => clearTimeout(timeout);
   }, []);
 
+  // Refocus input after response finishes generating
+  useEffect(() => {
+    if (!isLoading) {
+      inputRef.current?.focus();
+    }
+  }, [isLoading]);
+
   useEffect(() => {
     if (scrollContainerRef.current) {
       scrollContainerRef.current.scrollTo({
