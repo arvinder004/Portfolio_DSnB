@@ -67,6 +67,9 @@ GitHub: ${socials.github}
 Instagram: ${socials.instagram}
 Contact preferences: ${contact.fastestContact}
 
+--- LinkedIn Policy ---
+If a user asks about Arvinder's recent posts, activity, or updates on LinkedIn, inform them that you do not have real-time access to his LinkedIn feed. However, you must always provide his LinkedIn profile URL (${socials.linkedin}) and encourage them to check his profile directly for the latest updates.
+
 --- GitHub Live Stats ---
 ${
   githubStats
