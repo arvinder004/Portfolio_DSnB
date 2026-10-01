@@ -76,7 +76,7 @@ const GlobalChat = () => {
       </div>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-5xl border-none bg-transparent shadow-none sm:rounded-none p-0 w-[90vw]">
+        <DialogContent className="max-w-5xl border-none bg-transparent shadow-none sm:rounded-none p-0 w-[95vw] sm:w-[90vw] max-h-[100dvh]">
           <DialogTitle className="sr-only">Chat with Arvinder's AI</DialogTitle>
           <DialogDescription className="sr-only">An AI assistant to answer questions about Arvinder's portfolio and experience.</DialogDescription>
           <ChatWidget />

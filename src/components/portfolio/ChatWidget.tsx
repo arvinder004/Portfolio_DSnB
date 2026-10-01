@@ -137,7 +137,7 @@ const ChatWidget = () => {
 
   return (
     <div className="mx-auto w-full max-w-full animate-fade-in-up">
-      <div className="flex h-[80vh] min-h-[500px] max-h-[850px] w-full flex-col overflow-hidden rounded-[0.25rem] border border-border bg-background shadow-lg">
+      <div className="flex h-[85vh] sm:h-[80vh] max-h-[850px] w-full flex-col overflow-hidden rounded-[0.25rem] border border-border bg-background shadow-lg">
         {/* Header */}
         <div className="flex items-center justify-center border-b border-border bg-secondary px-4 py-4">
           <div className="flex items-center gap-2">
